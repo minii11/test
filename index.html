@@ -257,10 +257,18 @@
             <div class="circle-container position-relative">
                 
                 <!-- Central Image -->
-                <img class="img-fluid glowing-image position-absolute top-50 start-50 translate-middle" 
-                     src="main.jpg" 
-                     alt="Shampoo" 
-                     style="max-width: 170px; z-index: 10;">
+              <img src="main.jpg"
+     alt="Shampoo"
+     class="img-fluid"
+     style="
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 170px;
+        z-index: 10;
+     ">
+
 
                 <!-- Benefit Circles -->
                 <div class="circle" style="--i:0;"><h5>Natural & Organic</h5></div>
@@ -343,7 +351,7 @@
     height: 400px;
     position: relative;
     margin: auto;
-    transform: translateX(-35px); /* 👈 moves everything left */
+    transform: translateX(-40px); /* 👈 moves everything left */
         }
 
         .circle-wrapper {
@@ -777,6 +785,7 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
