@@ -253,7 +253,7 @@
         </h1>
 
         <div class="position-relative">
-            <img class="img-fluid glowing-image" src="main.jpg" alt="Shampoo" style="max-width: 300px;">
+            <img class="img-fluid glowing-image" src="img/shampoo.png" alt="Shampoo" style="max-width: 200px;">
 
             <!-- Circles positioned in a circular layout around the image -->
             <div class="circle circle-1"><h5>Natural & Organic</h5></div>
@@ -284,21 +284,22 @@
         background-color: #ffe880;
         border: 4px solid #ffcc00;
         border-radius: 50%;
-        width: 100px; /* Full roundness */
-        height: 100px; /* Full roundness */
+        width: 80px;  /* Reduced size */
+        height: 80px; /* Reduced size */
         position: absolute;
         color: white; /* Text color */
         text-align: center; /* Center text */
         font-weight: bold; /* Bold text */
+        font-size: 0.75rem; /* Adjusted font size */
     }
     
     /* Positioning circles in a circular path */
-    .circle-1 { top: 20%; left: 50%; transform: translate(-50%, -50%); }
-    .circle-2 { top: 20%; left: calc(100% - 30px); transform: translate(-50%, -50%); }
-    .circle-3 { top: 50%; left: 100%; transform: translate(-50%, -50%); }
-    .circle-4 { top: 80%; left: calc(100% - 30px); transform: translate(-50%, -50%); }
-    .circle-5 { top: 80%; left: 50%; transform: translate(-50%, -50%); }
-    .circle-6 { top: 50%; left: 0; transform: translate(-50%, -50%); }
+    .circle-1 { top: 15%; left: 50%; transform: translate(-50%, -50%); } /* Top Center */
+    .circle-2 { top: 25%; left: 85%; transform: translate(-50%, -50%); } /* Top Right */
+    .circle-3 { top: 50%; left: 100%; transform: translate(-50%, -50%); } /* Right Center */
+    .circle-4 { top: 75%; left: 85%; transform: translate(-50%, -50%); } /* Bottom Right */
+    .circle-5 { top: 85%; left: 50%; transform: translate(-50%, -50%); } /* Bottom Center */
+    .circle-6 { top: 50%; left: 0; transform: translate(-50%, -50%); } /* Left Center */
 
     h5 {
         margin: 0;
@@ -306,16 +307,15 @@
 
     @media (max-width: 768px) {
         .circle {
-            width: 80px; /* Adjust for mobile */
-            height: 80px; /* Adjust for mobile */
+            width: 60px; /* Further adjust for mobile */
+            height: 60px; /* Further adjust for mobile */
         }
 
         h5 {
-            font-size: 0.75rem; /* Smaller font size for mobile */
+            font-size: 0.65rem; /* Smaller font size for mobile */
         }
     }
 </style>
-
    
    
 
@@ -730,6 +730,7 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
