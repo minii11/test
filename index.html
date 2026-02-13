@@ -64,26 +64,29 @@
     </div>
 <!-- Navbar Start -->
 <!-- TOP NAVBAR -->
-<div style="width:100%; background:white; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 10px rgba(0,0,0,0.05); position:sticky; top:0; z-index:1000;">
-
-    <h2 style="color:#ffca1a; margin:0; font-weight:900;">SAFA'Z</h2>
+<div style="width: 100%; background: white; padding: 15px 20px; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); position: sticky; top: 0; z-index: 1000;">
 
     <!-- Hamburger Button -->
-    <div onclick="openSidebar()" 
-         style="font-size:28px; cursor:pointer; color:#ffca1a; font-weight:bold;">
+    <div onclick="openSidebar()" style="font-size: 28px; cursor: pointer; color: #ffca1a; font-weight: bold; margin-right: auto;">
         ☰
     </div>
+
+    <!-- Logo Image -->
+    <img src="logo.jpg" alt="Logo" style="height: 40px; width: auto; margin-right: 10px;"/>
+
+    <!-- Name -->
+    <h2 style="color: #ffca1a; margin: 0; font-weight: 900;">SAFA'Z</h2>
 
 </div>
 
 
 <!-- SIDEBAR -->
 <div id="sidebar" 
-     style="height:100%; width:0; position:fixed; top:0; right:0; background:white; overflow-x:hidden; transition:0.4s; box-shadow:-5px 0 20px rgba(0,0,0,0.1); z-index:2000; padding-top:60px;">
+     style="height:100%; width:260px; position:fixed; top:0; left:-260px; background:white; overflow-x:hidden; transition:0.4s; box-shadow:5px 0 20px rgba(0,0,0,0.1); z-index:2000; padding-top:60px;">
 
     <!-- Close Button -->
     <a href="javascript:void(0)" onclick="closeSidebar()" 
-       style="position:absolute; top:15px; right:25px; font-size:30px; text-decoration:none; color:#ffca1a; font-weight:bold;">
+       style="position:absolute; top:15px; left:25px; font-size:30px; text-decoration:none; color:#ffca1a; font-weight:bold;">
         ×
     </a>
 
@@ -124,7 +127,6 @@
 </div>
 
 
-<!-- Overlay -->
 <div id="overlay" 
      onclick="closeSidebar()" 
      style="position:fixed; top:0; left:0; width:100%; height:100%; 
@@ -698,12 +700,12 @@
 
 <script>
 function openSidebar() {
-    document.getElementById("sidebar").style.width = "260px";
+    document.getElementById("sidebar").style.left = "0"; // Open from left
     document.getElementById("overlay").style.display = "block";
 }
 
 function closeSidebar() {
-    document.getElementById("sidebar").style.width = "0";
+    document.getElementById("sidebar").style.left = "-260px"; // Hide to the left
     document.getElementById("overlay").style.display = "none";
 }
 
