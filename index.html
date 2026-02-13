@@ -63,38 +63,74 @@
         </div>
     </div>
 <!-- Navbar Start -->
-<div class="container-fluid sticky-top" style="background-color: white;">
-    <div class="container">
-        <nav class="navbar navbar-expand-lg" style="background-color: white; padding: 0;">
-            <a href="index.html" class="navbar-brand">
-                <h2 style="color: #ffca1a;">SAFA'Z</h2>
-            </a>
-            <!-- Button for mobile view -->
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon" style="background-color: #ffca1a; border-radius: 0;"></span>
-            </button>
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav ms-auto">
-                    <a href="index.html" class="nav-item nav-link active" style="color: #ffca1a;">Home</a>
-                    <a href="about.html" class="nav-item nav-link" style="color: #ffca1a;">About</a>
-                    <a href="product.html" class="nav-item nav-link" style="color: #ffca1a;">Products</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="color: #ffca1a;">Pages</a>
-                        <div class="dropdown-menu" style="background-color: #fff; margin-top: 0.5rem;">
-                            <a href="feature.html" class="dropdown-item" style="color: #333;">Features</a>
-                            <a href="how-to-use.html" class="dropdown-item" style="color: #333;">How To Use</a>
-                            <a href="testimonial.html" class="dropdown-item" style="color: #333;">Testimonial</a>
-                            <a href="blog.html" class="dropdown-item" style="color: #333;">Blog Articles</a>
-                            <a href="404.html" class="dropdown-item" style="color: #333;">404 Page</a>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="nav-item nav-link" style="color: #ffca1a;">Contact</a>
-                </div>
-                <a href="https://htmlcodex.com/downloading/?item=2727" class="btn btn-dark py-2 px-4 d-none d-lg-inline-block">Buy Pro Version</a>
-            </div>
-        </nav>
+<!-- TOP NAVBAR -->
+<div style="width:100%; background:white; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; box-shadow:0 2px 10px rgba(0,0,0,0.05); position:sticky; top:0; z-index:1000;">
+
+    <h2 style="color:#ffca1a; margin:0; font-weight:900;">SAFA'Z</h2>
+
+    <!-- Hamburger Button -->
+    <div onclick="openSidebar()" 
+         style="font-size:28px; cursor:pointer; color:#ffca1a; font-weight:bold;">
+        ☰
     </div>
+
+</div>
+
+
+<!-- SIDEBAR -->
+<div id="sidebar" 
+     style="height:100%; width:0; position:fixed; top:0; right:0; background:white; overflow-x:hidden; transition:0.4s; box-shadow:-5px 0 20px rgba(0,0,0,0.1); z-index:2000; padding-top:60px;">
+
+    <!-- Close Button -->
+    <a href="javascript:void(0)" onclick="closeSidebar()" 
+       style="position:absolute; top:15px; right:25px; font-size:30px; text-decoration:none; color:#ffca1a; font-weight:bold;">
+        ×
+    </a>
+
+    <!-- Menu Links -->
+    <a href="index.html" 
+       style="display:block; padding:15px 30px; text-decoration:none; color:#333; font-weight:700; font-size:18px; border-bottom:1px solid #f1f1f1;">
+       Home
+    </a>
+
+    <a href="about.html" 
+       style="display:block; padding:15px 30px; text-decoration:none; color:#333; font-weight:700; font-size:18px; border-bottom:1px solid #f1f1f1;">
+       About
+    </a>
+
+    <a href="product.html" 
+       style="display:block; padding:15px 30px; text-decoration:none; color:#333; font-weight:700; font-size:18px; border-bottom:1px solid #f1f1f1;">
+       Products
+    </a>
+
+    <a href="feature.html" 
+       style="display:block; padding:15px 30px; text-decoration:none; color:#333; font-weight:700; font-size:18px; border-bottom:1px solid #f1f1f1;">
+       Features
+    </a>
+
+    <a href="contact.html" 
+       style="display:block; padding:15px 30px; text-decoration:none; color:#333; font-weight:700; font-size:18px; border-bottom:1px solid #f1f1f1;">
+       Contact
+    </a>
+
+    <!-- Button -->
+    <div style="padding:25px;">
+        <a href="#" 
+           style="display:block; background:#ffca1a; color:white; text-align:center; padding:12px; font-weight:800; text-decoration:none; border-radius:8px;">
+           Buy Now
+        </a>
+    </div>
+
+</div>
+
+
+<!-- Overlay -->
+<div id="overlay" 
+     onclick="closeSidebar()" 
+     style="position:fixed; top:0; left:0; width:100%; height:100%; 
+            background:rgba(0,0,0,0.3); 
+            display:none; 
+            z-index:1500;">
 </div>
 
   <!-- Hero Start -->
@@ -170,7 +206,7 @@
 <!-- About End -->
 
 <!-- Deal Start -->
-<div class="container-fluid deal" style="background-color: #ffe880; my-5 py-5;">
+<div class="container-fluid deal" style="background-color: #ffe880;">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
@@ -295,7 +331,7 @@
    
 
    <!-- How To Use Start -->
-<div class="container-fluid how-to-use" style="background-color: #ffe880; my-5 py-5;">
+<div class="container-fluid how-to-use" style="background-color: #ffe880;">
     <div class="container text-dark py-5">
         <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 600px;">
             <h1 style="color: #ffca1a; margin-bottom: 1rem;">
@@ -416,7 +452,7 @@
 
 
 <!-- Testimonial Start -->
-<div class="container-fluid testimonial" style="background-color: #ffe880; my-5 py-5;">
+<div class="container-fluid testimonial" style="background-color: #ffe880;">
     <div class="container text-dark py-5">
         <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style="max-width: 600px;">
             <h1 style="color: #ffca1a; margin-bottom: 1rem;">
@@ -659,6 +695,25 @@
    style="background-color: #ffc107; color: #fff;">
     <i class="bi bi-arrow-up"></i>
 </a>
+
+<script>
+function openSidebar() {
+    document.getElementById("sidebar").style.width = "260px";
+    document.getElementById("overlay").style.display = "block";
+}
+
+function closeSidebar() {
+    document.getElementById("sidebar").style.width = "0";
+    document.getElementById("overlay").style.display = "none";
+}
+
+// Close sidebar when pressing ESC key
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closeSidebar();
+    }
+});
+</script>
 
 
 <!-- JavaScript Libraries -->
