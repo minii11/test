@@ -252,21 +252,32 @@
             <span class="fw-light text-dark">Best Benefits Of Our</span> Natural Hair Shampoo
         </h1>
 
-        <div class="position-relative">
-            <img class="img-fluid glowing-image" src="main.jpg" alt="Shampoo" style="max-width: 200px;">
+        <!-- The container needs to be relative for absolute children -->
+        <div class="circle-container position-relative mx-auto" style="width: 350px; height: 350px;">
+            
+            <!-- Central Image -->
+            <img class="img-fluid glowing-image position-absolute top-50 start-50 translate-middle" 
+                 src="img/shampoo.png" alt="Shampoo" style="max-width: 150px; z-index: 10;">
 
-            <!-- Circles positioned in a circular layout around the image -->
-            <div class="circle circle-1"><h5>Natural & Organic</h5></div>
-            <div class="circle circle-2"><h5>Anti Hair Fall</h5></div>
-            <div class="circle circle-3"><h5>Anti-dandruff</h5></div>
-            <div class="circle circle-4"><h5>No Internal Side Effect</h5></div>
-            <div class="circle circle-5"><h5>No Skin Irritation</h5></div>
-            <div class="circle circle-6"><h5>No Artificial Smell</h5></div>
+            <!-- Circles positioned using CSS rotation/translation -->
+            <div class="circle circle-1" style="--i: 0;"><h5>Natural & Organic</h5></div>
+            <div class="circle circle-2" style="--i: 1;"><h5>Anti Hair Fall</h5></div>
+            <div class="circle circle-3" style="--i: 2;"><h5>Anti-dandruff</h5></div>
+            <div class="circle circle-4" style="--i: 3;"><h5>No Internal Side Effect</h5></div>
+            <div class="circle circle-5" style="--i: 4;"><h5>No Skin Irritation</h5></div>
+            <div class="circle circle-6" style="--i: 5;"><h5>No Artificial Smell</h5></div>
         </div>
     </div>
 </div>
 
 <style>
+    /* CSS Variables for easy customization */
+    :root {
+        --total-items: 6;
+        --radius: 160px; /* Distance from center to circle edge */
+        --item-size: 80px; /* Width/Height of the circle element */
+    }
+
     body {
         overflow-x: hidden; /* Prevent horizontal overflow */
     }
@@ -274,7 +285,13 @@
     .glowing-image {
         box-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 40px rgba(255, 215, 0, 0.4); /* Golden constant glow */
         transition: box-shadow 0.5s;
-        position: relative; /* Relative positioning for absolute circles */
+        z-index: 10; /* Ensure image is above circles if they overlap */
+    }
+
+    .circle-container {
+        /* This container defines the area where the circle arrangement happens */
+        position: relative;
+        /* Set width/height large enough to contain the circle arrangement */
     }
 
     .circle {
@@ -284,39 +301,50 @@
         background-color: #ffe880;
         border: 4px solid #ffcc00;
         border-radius: 50%;
-        width: 80px;  /* Reduced size */
-        height: 80px; /* Reduced size */
+        width: var(--item-size);
+        height: var(--item-size);
         position: absolute;
-        color: white; /* Text color */
-        text-align: center; /* Center text */
-        font-weight: bold; /* Bold text */
-        font-size: 0.75rem; /* Adjusted font size */
+        color: white;
+        text-align: center;
+        font-weight: bold;
+        
+        /* Positioning logic based on CSS variable --i */
+        top: 50%;
+        left: 50%;
+        transform: 
+            /* 1. Rotate the element to its angle */
+            rotate(calc(360deg / var(--total-items) * var(--i))) 
+            /* 2. Move it out to the radius distance */
+            translateX(calc(var(--radius) - (var(--item-size) / 2)))
+            /* 3. Move it back to center it on the container's center point */
+            translateY(calc(var(--item-size) / -2)) 
+            /* 4. Counter-rotate to keep text readable */
+            rotate(calc(-360deg / var(--total-items) * var(--i))) 
+            /* 5. Correct for initial transform centering */
+            translateX(calc(var(--item-size) / 2))
+            translateY(-50%);
     }
-    
-    /* Positioning circles in a circular path */
-    .circle-1 { top: 15%; left: 50%; transform: translate(-50%, -50%); } /* Top Center */
-    .circle-2 { top: 25%; left: 85%; transform: translate(-50%, -50%); } /* Top Right */
-    .circle-3 { top: 50%; left: 100%; transform: translate(-50%, -50%); } /* Right Center */
-    .circle-4 { top: 75%; left: 85%; transform: translate(-50%, -50%); } /* Bottom Right */
-    .circle-5 { top: 85%; left: 50%; transform: translate(-50%, -50%); } /* Bottom Center */
-    .circle-6 { top: 50%; left: 0; transform: translate(-50%, -50%); } /* Left Center */
 
     h5 {
         margin: 0;
+        font-size: 0.75rem; /* Base font size */
     }
 
     @media (max-width: 768px) {
+        :root {
+            --radius: 130px; /* Smaller radius for mobile */
+            --item-size: 60px; /* Smaller circle size for mobile */
+        }
+        
         .circle {
-            width: 60px; /* Further adjust for mobile */
-            height: 60px; /* Further adjust for mobile */
+             /* Re-apply transform with new variables if necessary, but modern browsers handle calc() well */
         }
 
         h5 {
-            font-size: 0.65rem; /* Smaller font size for mobile */
+            font-size: 0.6rem; /* Even smaller font size for mobile */
         }
     }
 </style>
-   
    
 
    <!-- How To Use Start -->
@@ -730,6 +758,7 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
