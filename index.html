@@ -251,17 +251,17 @@
         <h1 class="mb-4" style="color: #ffe880;">
             <span class="fw-light text-dark">Best Benefits Of Our</span> Natural Hair Shampoo
         </h1>
-        
+
         <div class="position-relative">
             <img class="img-fluid glowing-image" src="img/shampoo.png" alt="Shampoo" style="max-width: 300px;">
 
-            <!-- Circles placed in a circular layout -->
-            <div class="circle circle-1"><h5 class="text-white">Natural & Organic</h5></div>
-            <div class="circle circle-2"><h5 class="text-white">Anti Hair Fall</h5></div>
-            <div class="circle circle-3"><h5 class="text-white">Anti-dandruff</h5></div>
-            <div class="circle circle-4"><h5 class="text-white">No Internal Side Effect</h5></div>
-            <div class="circle circle-5"><h5 class="text-white">No Skin Irritation</h5></div>
-            <div class="circle circle-6"><h5 class="text-white">No Artificial Smell</h5></div>
+            <!-- Circles positioned in a circular layout around the image -->
+            <div class="circle circle-1"><h5>Natural & Organic</h5></div>
+            <div class="circle circle-2"><h5>Anti Hair Fall</h5></div>
+            <div class="circle circle-3"><h5>Anti-dandruff</h5></div>
+            <div class="circle circle-4"><h5>No Internal Side Effect</h5></div>
+            <div class="circle circle-5"><h5>No Skin Irritation</h5></div>
+            <div class="circle circle-6"><h5>No Artificial Smell</h5></div>
         </div>
     </div>
 </div>
@@ -274,7 +274,7 @@
     .glowing-image {
         box-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 40px rgba(255, 215, 0, 0.4); /* Golden constant glow */
         transition: box-shadow 0.5s;
-        position: relative; /* Make sure the image is positioned relative for absolute circles */
+        position: relative; /* Relative positioning for absolute circles */
     }
 
     .circle {
@@ -284,21 +284,21 @@
         background-color: #ffe880;
         border: 4px solid #ffcc00;
         border-radius: 50%;
-        width: 120px; /* Full roundness */
-        height: 120px; /* Full roundness */
+        width: 100px; /* Full roundness */
+        height: 100px; /* Full roundness */
         position: absolute;
         color: white; /* Text color */
         text-align: center; /* Center text */
         font-weight: bold; /* Bold text */
     }
-
-    /* Position each circle around the image */
-    .circle-1 { top: -40px; left: 50%; transform: translateX(-50%); }
-    .circle-2 { top: 50%; left: calc(100% + 20px); transform: translateY(-50%); }
-    .circle-3 { top: calc(100% + 20px); left: 50%; transform: translateX(-50%); }
-    .circle-4 { top: 50%; left: -40px; transform: translateY(-50%); }
-    .circle-5 { top: -40px; left: calc(50% - 60px); }
-    .circle-6 { top: -40px; left: calc(50% + 60px); } 
+    
+    /* Positioning circles in a circular path */
+    .circle-1 { top: 20%; left: 50%; transform: translate(-50%, -50%); }
+    .circle-2 { top: 20%; left: calc(100% - 30px); transform: translate(-50%, -50%); }
+    .circle-3 { top: 50%; left: 100%; transform: translate(-50%, -50%); }
+    .circle-4 { top: 80%; left: calc(100% - 30px); transform: translate(-50%, -50%); }
+    .circle-5 { top: 80%; left: 50%; transform: translate(-50%, -50%); }
+    .circle-6 { top: 50%; left: 0; transform: translate(-50%, -50%); }
 
     h5 {
         margin: 0;
@@ -306,8 +306,8 @@
 
     @media (max-width: 768px) {
         .circle {
-            width: 100px; /* Adjust for mobile */
-            height: 100px; /* Adjust for mobile */
+            width: 80px; /* Adjust for mobile */
+            height: 80px; /* Adjust for mobile */
         }
 
         h5 {
@@ -730,5 +730,6 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
