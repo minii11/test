@@ -246,115 +246,106 @@
 <!-- Deal End -->
 
 <!-- Feature Start -->
-<div class="container-fluid py-5 overflow-hidden">
+<div class="container-fluid py-5">
     <div class="container text-center">
         <h1 class="mb-4" style="color: #ffe880;">
             <span class="fw-light text-dark">Best Benefits Of Our</span> Natural Hair Shampoo
         </h1>
 
-        <!-- Circle Wrapper -->
-        <div class="circle-wrapper d-flex justify-content-center align-items-center">
-            <div class="circle-container position-relative">
-                
-                <!-- Central Image -->
-                <img class="img-fluid glowing-image position-absolute top-50 start-50 translate-middle" 
-                     src="main.jpg" 
-                     alt="Shampoo" 
-                     style="max-width: 170px; z-index: 10;">
+        <!-- Bigger container so circles don’t get cut -->
+        <div class="circle-container position-relative mx-auto">
+            
+            <!-- Central Image -->
+            <img class="img-fluid glowing-image position-absolute top-50 start-50 translate-middle" 
+                 src="main.jpg" 
+                 alt="Shampoo" 
+                 style="max-width: 170px; z-index: 10;">
 
-                <!-- Benefit Circles -->
-                <div class="circle" style="--i:0;"><h5>Natural & Organic</h5></div>
-                <div class="circle" style="--i:1;"><h5>Anti Hair Fall</h5></div>
-                <div class="circle" style="--i:2;"><h5>Anti-dandruff</h5></div>
-                <div class="circle" style="--i:3;"><h5>No Internal Side Effect</h5></div>
-                <div class="circle" style="--i:4;"><h5>No Skin Irritation</h5></div>
-                <div class="circle" style="--i:5;"><h5>No Artificial Smell</h5></div>
-
-            </div>
+            <!-- Circles -->
+            <div class="circle" style="--i: 0;"><h5>Natural & Organic</h5></div>
+            <div class="circle" style="--i: 1;"><h5>Anti Hair Fall</h5></div>
+            <div class="circle" style="--i: 2;"><h5>Anti-dandruff</h5></div>
+            <div class="circle" style="--i: 3;"><h5>No Internal Side Effect</h5></div>
+            <div class="circle" style="--i: 4;"><h5>No Skin Irritation</h5></div>
+            <div class="circle" style="--i: 5;"><h5>No Artificial Smell</h5></div>
         </div>
     </div>
 </div>
 
 <style>
+:root {
+    --total-items: 6;
+    --radius: 180px;      /* Increased radius */
+    --item-size: 95px;    /* Slightly bigger circles */
+}
+
+/* IMPORTANT: container must be radius * 2 */
+.circle-container {
+    width: 420px;
+    height: 420px;
+    position: relative;
+}
+
+/* Prevent horizontal scroll */
+body {
+    overflow-x: hidden;
+}
+
+.glowing-image {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7),
+                0 0 40px rgba(255, 215, 0, 0.4);
+}
+
+.circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffe880;
+    border: 4px solid #ffcc00;
+    border-radius: 50%;
+    width: var(--item-size);
+    height: var(--item-size);
+    position: absolute;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+
+    top: 50%;
+    left: 50%;
+    transform: 
+        rotate(calc(360deg / var(--total-items) * var(--i))) 
+        translateX(var(--radius))
+        rotate(calc(-360deg / var(--total-items) * var(--i)));
+}
+
+h5 {
+    margin: 0;
+    font-size: 0.75rem;
+    padding: 6px;
+}
+
+/* ===== MOBILE FIX ===== */
+@media (max-width: 768px) {
     :root {
-        --total-items: 6;
-        --radius: 170px;        /* Slightly increased */
-        --item-size: 100px;     /* Bigger circles */
-    }
-
-    body {
-        overflow-x: hidden;
-    }
-
-    .circle-wrapper {
-        min-height: 450px;
+        --radius: 140px;
+        --item-size: 75px;
     }
 
     .circle-container {
-        width: 400px;
-        height: 400px;
-        position: relative;
-        margin: auto;
-    }
-
-    .glowing-image {
-        box-shadow: 0 0 25px rgba(255, 215, 0, 0.8),
-                    0 0 50px rgba(255, 215, 0, 0.4);
-    }
-
-    .circle {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: var(--item-size);
-        height: var(--item-size);
-        background: #ffe880;
-        border: 4px solid #ffcc00;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        font-weight: bold;
-        color: #fff;
-
-        transform:
-            rotate(calc(360deg / var(--total-items) * var(--i)))
-            translate(var(--radius))
-            rotate(calc(-360deg / var(--total-items) * var(--i)));
+        width: 320px;
+        height: 320px;
     }
 
     h5 {
-        margin: 0;
-        font-size: 0.8rem;
-        padding: 5px;
+        font-size: 0.65rem;
     }
 
-    /* ================= MOBILE FIX ================= */
-    @media (max-width: 768px) {
-        :root {
-            --radius: 130px;
-            --item-size: 85px;  /* Slightly bigger but safe */
-        }
-
-        .circle-container {
-            width: 300px;
-            height: 300px;
-        }
-
-        .circle-wrapper {
-            min-height: 350px;
-        }
-
-        .glowing-image {
-            max-width: 130px !important;
-        }
-
-        h5 {
-            font-size: 0.65rem;
-        }
+    .glowing-image {
+        max-width: 130px !important;
     }
+}
 </style>
+
 
    
 
@@ -769,6 +760,7 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
