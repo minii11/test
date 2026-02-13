@@ -31,6 +31,27 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style>
+    .navbar-toggler {
+        border: none; /* Remove default border */
+    }
+
+    .navbar-toggler-icon {
+        background-image: none; /* Remove default icon */
+    }
+
+    .navbar-toggler:before,
+    .navbar-toggler:after,
+    .navbar-toggler span {
+        content: '';
+        display: block;
+        width: 30px; /* Width of each bar */
+        height: 4px; /* Height of each bar */
+        background-color: #ffca1a; /* Color of the bars */
+        margin: 6px auto; /* Space between bars */
+        border-radius: 2px; /* Rounded corners for bars */
+    }
+</style>
 </head>
 
 <body>
@@ -41,8 +62,7 @@
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-
-    <!-- Navbar Start -->
+<!-- Navbar Start -->
 <div class="container-fluid sticky-top" style="background-color: white;">
     <div class="container">
         <nav class="navbar navbar-expand-lg" style="background-color: white; padding: 0;">
@@ -50,8 +70,8 @@
                 <h2 style="color: #ffca1a;">Hairnic</h2>
             </a>
             <!-- Button for mobile view -->
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" style="border-color: #ffca1a;">
-                <span class="navbar-toggler-icon" style="background-color: #ffca1a;"></span>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon" style="background-color: #ffca1a; border-radius: 0;"></span>
             </button>
             <!-- Collapsible content -->
             <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -76,9 +96,6 @@
         </nav>
     </div>
 </div>
-
-
-<!-- Navbar End -->
 
   <!-- Hero Start -->
 <div class="container-fluid" style="background-color: #ffe880; padding: 2rem 0;">
@@ -617,5 +634,6 @@
 
 
 </html>
+
 
 
