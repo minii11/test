@@ -394,12 +394,12 @@
     </div>
 </div>
 <!-- Feature End -->
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Safa'z Client Feedback</title>
+<title>Safa'z Reviews</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -419,43 +419,43 @@ body{
 /* HEADING */
 .feedback-title{
     text-align:center;
-    font-size:32px;
+    font-size:30px;
     font-weight:600;
-    color:#fff;
+    color:white;
     margin-bottom:50px;
 }
 
 /* SLIDER */
 .feedback-slider{
     overflow:hidden;
+    position:relative;
 }
 
 .feedback-track{
     display:flex;
-    transition:transform .4s ease-in-out;
+    transition:transform .5s ease;
 }
 
 /* CARD */
 .feedback-card{
     min-width:100%;
     background:#fff;
-    border-radius:25px;
-    padding:40px 25px;
+    border-radius:20px;
+    padding:35px 25px;
     margin:0 10px;
     position:relative;
     text-align:center;
 
-    /* Golden Outline Border */
-    border:3px solid;
-    border-image: linear-gradient(45deg,#ffae00,#ffd700,#ff8c00) 1;
+    /* Proper Box Outline */
+    border:3px solid #ffb700;
 }
 
 /* LOGO */
 .card-logo{
     position:absolute;
-    top:20px;
-    right:20px;
-    width:45px;
+    top:15px;
+    right:15px;
+    width:40px;
 }
 
 /* PRODUCT TITLE */
@@ -479,43 +479,41 @@ body{
     color:#555;
     line-height:1.7;
     font-style:italic;
-    padding:0 10px;
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
-/* LIGHT YELLOW BADGE */
+/* BADGE */
 .client-badge{
     background:#fff6c7;
-    padding:20px 25px;
-    border-radius:0 60px 60px 25px;
+    padding:18px 20px;
+    border-radius:0 50px 50px 20px;
     width:85%;
     text-align:left;
-    box-shadow:0 8px 15px rgba(0,0,0,.1);
+    margin:0 auto;
 }
 
 /* NAME */
 .client-name{
     font-weight:600;
-    font-size:18px;
-    color:#333;
+    font-size:17px;
 }
 
 /* ROLE */
 .client-role{
     font-size:13px;
-    opacity:.8;
     margin-bottom:8px;
+    opacity:.8;
 }
 
-/* GOLD SHINING STARS */
+/* STARS */
 .stars{
     display:flex;
-    gap:8px;
+    gap:6px;
 }
 
 .star{
-    width:22px;
-    height:22px;
+    width:20px;
+    height:20px;
     background: radial-gradient(circle at 30% 30%, #fffbd1, #ffd700 40%, #ffb700 65%, #b8860b 90%);
     clip-path: polygon(
         50% 0%, 61% 35%, 98% 35%, 
@@ -524,27 +522,18 @@ body{
         32% 57%, 2% 35%, 
         39% 35%
     );
-    animation: shine 1.2s infinite linear;
-    box-shadow:0 0 10px rgba(255,215,0,.9);
+    box-shadow:0 0 6px rgba(255,215,0,.6);
 }
 
-/* Continuous Shine Effect */
-@keyframes shine{
-    0%{
-        filter:brightness(1);
-        transform:scale(1);
-        box-shadow:0 0 5px rgba(255,215,0,.7);
-    }
-    50%{
-        filter:brightness(1.6);
-        transform:scale(1.15);
-        box-shadow:0 0 20px rgba(255,215,0,1);
-    }
-    100%{
-        filter:brightness(1);
-        transform:scale(1);
-        box-shadow:0 0 5px rgba(255,215,0,.7);
-    }
+/* Short sparkle animation */
+.star.sparkle{
+    animation: sparkle .6s ease;
+}
+
+@keyframes sparkle{
+    0%{ filter:brightness(1); transform:scale(1); }
+    50%{ filter:brightness(2); transform:scale(1.25); box-shadow:0 0 18px #ffd700; }
+    100%{ filter:brightness(1); transform:scale(1); }
 }
 
 /* BUTTONS */
@@ -564,7 +553,7 @@ body{
     font-weight:600;
 }
 
-/* RESPONSIVE */
+/* DESKTOP */
 @media(min-width:768px){
     .feedback-card{
         min-width:50%;
@@ -583,70 +572,138 @@ body{
 
 <section class="feedback-section">
 
-<h2 class="feedback-title">✨ Client Feedback</h2>
+<h2 class="feedback-title">✨ What Our Clients Say</h2>
 
-<div class="feedback-slider">
+<div class="feedback-slider" id="slider">
 <div class="feedback-track" id="feedbackTrack">
 
-<!-- CARD -->
+<!-- REVIEW 1 -->
 <div class="feedback-card">
-    <img src="logo-placeholder.png" class="card-logo">
-    <div class="product-title">Product Purchased: Night Repair Cream</div>
-    <img src="product-image1.png" class="product-img">
+<img src="logo-placeholder.png" class="card-logo">
+<div class="product-title">Product Purchased: Night Repair Cream</div>
+<img src="product-image1.png" class="product-img">
+<p class="review-text">
+"After one month, my skin feels firmer and brighter.
+It absorbs beautifully and feels premium."
+</p>
+<div class="client-badge">
+<div class="client-name">Sophia L.</div>
+<div class="client-role">CEO, Digital Agency</div>
+<div class="stars">
+<div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+</div>
+</div>
+</div>
 
-    <p class="review-text">
-        "After 4 weeks of use, my skin feels smoother and deeply hydrated.
-        The glow every morning feels like luxury skincare treatment."
-    </p>
+<!-- REVIEW 2 -->
+<div class="feedback-card">
+<img src="logo-placeholder.png" class="card-logo">
+<div class="product-title">Product Purchased: Hand & Feet Cream</div>
+<img src="product-image2.png" class="product-img">
+<p class="review-text">
+"My hands were extremely dry before.
+Now they stay soft all day without grease."
+</p>
+<div class="client-badge">
+<div class="client-name">Michael T.</div>
+<div class="client-role">Marketing Manager</div>
+<div class="stars">
+<div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+</div>
+</div>
+</div>
 
-    <div class="client-badge">
-        <div class="client-name">Sophia L.</div>
-        <div class="client-role">CEO, Digital Agency</div>
-        <div class="stars">
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-            <div class="star"></div>
-        </div>
-    </div>
+<!-- REVIEW 3 -->
+<div class="feedback-card">
+<img src="logo-placeholder.png" class="card-logo">
+<div class="product-title">Product Purchased: Brightening Polish</div>
+<img src="product-image3.png" class="product-img">
+<p class="review-text">
+"My skin texture improved visibly.
+Makeup applies smoother and glow lasts longer."
+</p>
+<div class="client-badge">
+<div class="client-name">Emma R.</div>
+<div class="client-role">Beauty Creator</div>
+<div class="stars">
+<div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div><div class="star"></div>
+</div>
+</div>
 </div>
 
 </div>
 </div>
 
 <div class="feedback-buttons">
-    <button onclick="moveSlide(-1)">Previous</button>
-    <button onclick="moveSlide(1)">Next</button>
+<button id="prevBtn">Previous</button>
+<button id="nextBtn">Next</button>
 </div>
 
 </section>
 
 <script>
+
 const track = document.getElementById("feedbackTrack");
+const cards = document.querySelectorAll(".feedback-card");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+
 let index = 0;
+let startX = 0;
+let currentTranslate = 0;
 
-function moveSlide(direction){
-    const cards = document.querySelectorAll(".feedback-card");
+function updateSlide(){
     const cardWidth = cards[0].offsetWidth + 20;
-    const maxIndex = cards.length - 1;
-
-    index += direction;
-
-    if(index < 0) index = 0;
-    if(index > maxIndex) index = maxIndex;
-
     track.style.transform = `translateX(-${index * cardWidth}px)`;
+    sparkleStars();
 }
 
-window.addEventListener("resize", () => {
-    const cards = document.querySelectorAll(".feedback-card");
-    track.style.transform = `translateX(-${index * (cards[0].offsetWidth + 20)}px)`;
+function sparkleStars(){
+    const stars = cards[index].querySelectorAll(".star");
+    stars.forEach(star=>{
+        star.classList.add("sparkle");
+        setTimeout(()=> star.classList.remove("sparkle"),600);
+    });
+}
+
+nextBtn.addEventListener("click", ()=>{
+    if(index < cards.length-1){
+        index++;
+        updateSlide();
+    }
 });
+
+prevBtn.addEventListener("click", ()=>{
+    if(index > 0){
+        index--;
+        updateSlide();
+    }
+});
+
+/* TOUCH SUPPORT */
+track.addEventListener("touchstart",(e)=>{
+    startX = e.touches[0].clientX;
+});
+
+track.addEventListener("touchend",(e)=>{
+    let endX = e.changedTouches[0].clientX;
+    if(startX - endX > 50 && index < cards.length-1){
+        index++;
+    } else if(endX - startX > 50 && index > 0){
+        index--;
+    }
+    updateSlide();
+});
+
+window.addEventListener("resize",updateSlide);
+
+updateSlide();
+
 </script>
 
 </body>
 </html>
+
 
    <!-- How To Use Start -->
 <div class="container-fluid how-to-use" style="background-color: #ffe880;">
@@ -1059,6 +1116,7 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
