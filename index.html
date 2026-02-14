@@ -394,6 +394,260 @@
     </div>
 </div>
 <!-- Feature End -->
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safa'z Client Feedback</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+}
+
+/* SECTION */
+.feedback-section{
+    background: linear-gradient(135deg,#d4af37,#f8e9a1);
+    padding:60px 15px;
+}
+
+/* HEADING */
+.feedback-title{
+    text-align:center;
+    font-size:32px;
+    font-weight:600;
+    color:#fff;
+    margin-bottom:50px;
+}
+
+/* SLIDER */
+.feedback-slider{
+    overflow:hidden;
+}
+
+.feedback-track{
+    display:flex;
+    transition:transform .4s ease-in-out;
+}
+
+/* CARD */
+.feedback-card{
+    min-width:100%;
+    background:#fff;
+    border-radius:25px;
+    padding:40px 25px;
+    margin:0 10px;
+    position:relative;
+    text-align:center;
+
+    /* Golden Outline Border */
+    border:3px solid;
+    border-image: linear-gradient(45deg,#ffae00,#ffd700,#ff8c00) 1;
+}
+
+/* LOGO */
+.card-logo{
+    position:absolute;
+    top:20px;
+    right:20px;
+    width:45px;
+}
+
+/* PRODUCT TITLE */
+.product-title{
+    font-family:'Playfair Display',serif;
+    font-size:18px;
+    color:#d4af37;
+    margin-bottom:15px;
+}
+
+/* IMAGE */
+.product-img{
+    width:100%;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+/* REVIEW */
+.review-text{
+    font-size:14px;
+    color:#555;
+    line-height:1.7;
+    font-style:italic;
+    padding:0 10px;
+    margin-bottom:30px;
+}
+
+/* LIGHT YELLOW BADGE */
+.client-badge{
+    background:#fff6c7;
+    padding:20px 25px;
+    border-radius:0 60px 60px 25px;
+    width:85%;
+    text-align:left;
+    box-shadow:0 8px 15px rgba(0,0,0,.1);
+}
+
+/* NAME */
+.client-name{
+    font-weight:600;
+    font-size:18px;
+    color:#333;
+}
+
+/* ROLE */
+.client-role{
+    font-size:13px;
+    opacity:.8;
+    margin-bottom:8px;
+}
+
+/* GOLD SHINING STARS */
+.stars{
+    display:flex;
+    gap:8px;
+}
+
+.star{
+    width:22px;
+    height:22px;
+    background: radial-gradient(circle at 30% 30%, #fffbd1, #ffd700 40%, #ffb700 65%, #b8860b 90%);
+    clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 
+        68% 57%, 79% 91%, 
+        50% 70%, 21% 91%, 
+        32% 57%, 2% 35%, 
+        39% 35%
+    );
+    animation: shine 1.2s infinite linear;
+    box-shadow:0 0 10px rgba(255,215,0,.9);
+}
+
+/* Continuous Shine Effect */
+@keyframes shine{
+    0%{
+        filter:brightness(1);
+        transform:scale(1);
+        box-shadow:0 0 5px rgba(255,215,0,.7);
+    }
+    50%{
+        filter:brightness(1.6);
+        transform:scale(1.15);
+        box-shadow:0 0 20px rgba(255,215,0,1);
+    }
+    100%{
+        filter:brightness(1);
+        transform:scale(1);
+        box-shadow:0 0 5px rgba(255,215,0,.7);
+    }
+}
+
+/* BUTTONS */
+.feedback-buttons{
+    text-align:center;
+    margin-top:40px;
+}
+
+.feedback-buttons button{
+    background:linear-gradient(black,#d4af37);
+    border:none;
+    color:white;
+    padding:10px 25px;
+    border-radius:25px;
+    margin:0 5px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+/* RESPONSIVE */
+@media(min-width:768px){
+    .feedback-card{
+        min-width:50%;
+    }
+}
+
+@media(min-width:1024px){
+    .feedback-card{
+        min-width:33.33%;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<section class="feedback-section">
+
+<h2 class="feedback-title">✨ Client Feedback</h2>
+
+<div class="feedback-slider">
+<div class="feedback-track" id="feedbackTrack">
+
+<!-- CARD -->
+<div class="feedback-card">
+    <img src="logo-placeholder.png" class="card-logo">
+    <div class="product-title">Product Purchased: Night Repair Cream</div>
+    <img src="product-image1.png" class="product-img">
+
+    <p class="review-text">
+        "After 4 weeks of use, my skin feels smoother and deeply hydrated.
+        The glow every morning feels like luxury skincare treatment."
+    </p>
+
+    <div class="client-badge">
+        <div class="client-name">Sophia L.</div>
+        <div class="client-role">CEO, Digital Agency</div>
+        <div class="stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<div class="feedback-buttons">
+    <button onclick="moveSlide(-1)">Previous</button>
+    <button onclick="moveSlide(1)">Next</button>
+</div>
+
+</section>
+
+<script>
+const track = document.getElementById("feedbackTrack");
+let index = 0;
+
+function moveSlide(direction){
+    const cards = document.querySelectorAll(".feedback-card");
+    const cardWidth = cards[0].offsetWidth + 20;
+    const maxIndex = cards.length - 1;
+
+    index += direction;
+
+    if(index < 0) index = 0;
+    if(index > maxIndex) index = maxIndex;
+
+    track.style.transform = `translateX(-${index * cardWidth}px)`;
+}
+
+window.addEventListener("resize", () => {
+    const cards = document.querySelectorAll(".feedback-card");
+    track.style.transform = `translateX(-${index * (cards[0].offsetWidth + 20)}px)`;
+});
+</script>
+
+</body>
+</html>
+
    <!-- How To Use Start -->
 <div class="container-fluid how-to-use" style="background-color: #ffe880;">
     <div class="container text-dark py-5">
@@ -805,6 +1059,7 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
