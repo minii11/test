@@ -34,66 +34,1073 @@
 </head>
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+     <!-- Spinner Start -->
+<div id="spinner"
+     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-warning" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
-    <!-- Spinner End -->
+</div>
 
+<!-- TOP NAVBAR -->
+<div style="
+    width: 100%;
+    background: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+">
 
-    <!-- Navbar Start -->
-    <div class="container-fluid sticky-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light p-0">
-                <a href="index.html" class="navbar-brand">
-                    <h2 class="text-white">Hairnic</h2>
-                </a>
-                <button type="button" class="navbar-toggler ms-auto me-0" data-bs-toggle="collapse"
-                    data-bs-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto">
-                        <a href="index.html" class="nav-item nav-link">Home</a>
-                        <a href="about.html" class="nav-item nav-link">About</a>
-                        <a href="product.html" class="nav-item nav-link active">Products</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu bg-light mt-2">
-                                <a href="feature.html" class="dropdown-item">Features</a>
-                                <a href="how-to-use.html" class="dropdown-item">How To Use</a>
-                                <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                                <a href="blog.html" class="dropdown-item">Blog Articles</a>
-                                <a href="404.html" class="dropdown-item">404 Page</a>
-                            </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link">Contact</a>
-                    </div>
-                    <a href="https://htmlcodex.com/downloading/?item=2727" class="btn btn-dark py-2 px-4 d-none d-lg-inline-block">Buy Pro Version</a>
-                </div>
-            </nav>
-        </div>
+    <!-- Hamburger Button -->
+    <div onclick="openSidebar()" style="
+        font-size: 32px;
+        cursor: pointer;
+        color: #ffca1a;
+        font-weight: bold;
+        transition: transform 0.3s;
+    " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
+        ☰
     </div>
-    <!-- Navbar End -->
 
-
-    <!-- Hero Start -->
-    <div class="container-fluid bg-primary hero-header mb-5">
-        <div class="container text-center">
-            <h1 class="display-4 text-white mb-3 animated slideInDown">Products</h1>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb justify-content-center mb-0 animated slideInDown">
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-white active" aria-current="page">Products</li>
-                </ol>
-            </nav>
-        </div>
+    <!-- Logo + Text -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+  <h2 style="
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.2rem;
+    margin: 0 auto; /* Center horizontally */
+    font-weight: 800;
+    color: #ffca1a;
+    background: linear-gradient(45deg, #ffd700, #ffcc33);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.35), 0 0 12px rgba(255,215,0,0.6);
+    letter-spacing: 1px;
+    padding-right: 50px; /* Corrected */
+    text-align: center; /* Center text within the element */
+">
+    SAFA'<span style="font-size:0.65em; vertical-align: middle;">Z</span>
+</h2>
+        <img src="logo.jpg" alt="Logo" style="height: 60px; width: auto; border-radius:12px; box-shadow:0 0 15px rgba(255,202,26,0.7);" />
+      
     </div>
-    <!-- Hero End -->
+</div>
+
+<!-- SIDEBAR -->
+<div id="sidebar" 
+     style="
+        height:100%;
+        width:260px;
+        position:fixed;
+        top:0;
+        left:-280px;
+        background: linear-gradient(180deg, #fffde7, #ffe880);
+        overflow-x:hidden;
+        transition:0.5s ease;
+        box-shadow:5px 0 25px rgba(0,0,0,0.2);
+        z-index:2000;
+        padding-top:80px;
+        border-right:2px solid #ffca1a;
+        border-radius:0 20px 20px 0;
+     ">
+
+    <!-- Close Button -->
+    <a href="javascript:void(0)" onclick="closeSidebar()" 
+       style="
+            position:absolute; 
+            top:20px; 
+            right:20px; 
+            font-size:36px; 
+            text-decoration:none; 
+            color:#ffca1a; 
+            font-weight:bold;
+            transition: transform 0.3s, color 0.3s;
+       "
+       onmouseover="this.style.transform='rotate(90deg)'; this.style.color='#ffd700';"
+       onmouseout="this.style.transform='rotate(0deg)'; this.style.color='#ffca1a';"
+    >
+        ×
+    </a>
+
+ <!-- ===== SIDEBAR LOGO ===== -->
+<div style="
+    text-align:center;
+    margin-bottom:50px;
+    position:relative;
+    z-index:2;
+">
+  <span style="
+    font-size:40px;
+    font-weight:900;
+    letter-spacing:6px;
+    background: linear-gradient(45deg, #ffca1a, #000, #ffd700, #000);
+    background-size:400% 400%;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    display:inline-block;
+    animation:logoGradient 4s ease infinite;
+    text-shadow:
+        0 0 10px rgba(255,202,26,0.7),
+        0 0 20px rgba(0,0,0,0.5),
+        0 0 30px rgba(255,255,255,0.3);
+    transform: rotateX(3deg) rotateY(2deg);
+  ">
+    SAFA'z
+  </span>
+</div>
+
+<style>
+@keyframes logoGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+</style>
+
+<!-- ===== MENU TITLE ===== -->
+<div style="
+    text-align:center;
+    font-size:26px;
+    font-weight:900;
+    color:#ffca1a;
+    letter-spacing:2px;
+    margin-bottom:30px;
+    text-shadow:0 0 5px #000, 0 0 10px #ffca1a;
+    animation:menuGlow 2s ease-in-out infinite alternate;
+">MENU</div>
+ 
+   <!-- Menu Links -->
+<a href="index.html" style="
+    display:block;
+    padding:18px 30px;
+    text-decoration:none;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+" onmouseover="this.style.background='#ffca1a'; this.style.color='black'; this.style.fontWeight='900'; this.style.boxShadow='0 0 15px rgba(255,202,26,0.7)'" 
+   onmouseout="this.style.background='transparent'; this.style.color='black'; this.style.fontWeight='700'; this.style.boxShadow='none'">
+   Home
+</a>
+
+<a href="about.html" style="
+    display:block;
+    padding:18px 30px;
+    text-decoration:none;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+" onmouseover="this.style.background='#ffca1a'; this.style.color='black'; this.style.fontWeight='900'; this.style.boxShadow='0 0 15px rgba(255,202,26,0.7)'" 
+   onmouseout="this.style.background='transparent'; this.style.color='black'; this.style.fontWeight='700'; this.style.boxShadow='none'">
+   About
+</a>
+
+<a href="product.html" style="
+    display:block;
+    padding:18px 30px;
+    text-decoration:none;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+" onmouseover="this.style.background='#ffca1a'; this.style.color='black'; this.style.fontWeight='900'; this.style.boxShadow='0 0 15px rgba(255,202,26,0.7)'" 
+   onmouseout="this.style.background='transparent'; this.style.color='black'; this.style.fontWeight='700'; this.style.boxShadow='none'">
+   Products
+</a>
+
+<a href="feature.html" style="
+    display:block;
+    padding:18px 30px;
+    text-decoration:none;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+" onmouseover="this.style.background='#ffca1a'; this.style.color='black'; this.style.fontWeight='900'; this.style.boxShadow='0 0 15px rgba(255,202,26,0.7)'" 
+   onmouseout="this.style.background='transparent'; this.style.color='black'; this.style.fontWeight='700'; this.style.boxShadow='none'">
+   Features
+</a>
+
+<a href="contact.html" style="
+    display:block;
+    padding:18px 30px;
+    text-decoration:none;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+" onmouseover="this.style.background='#ffca1a'; this.style.color='black'; this.style.fontWeight='900'; this.style.boxShadow='0 0 15px rgba(255,202,26,0.7)'" 
+   onmouseout="this.style.background='transparent'; this.style.color='black'; this.style.fontWeight='700'; this.style.boxShadow='none'">
+   Contact
+</a>
+
+<!-- Button -->
+<div style="padding:25px;">
+    <a href="#" style="
+        display:block;
+        background:#ffca1a;
+        color:black;
+        text-align:center;
+        padding:14px;
+        font-weight:800;
+        font-family: 'Times New Roman', Times, serif;
+        text-decoration:none;
+        border-radius:12px;
+        box-shadow:0 5px 20px rgba(255,202,26,0.6);
+        transition: transform 0.3s, box-shadow 0.3s;
+    " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 25px rgba(255,202,26,0.8)'; this.style.fontWeight='900'" 
+      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 5px 20px rgba(255,202,26,0.6)'; this.style.fontWeight='800'">
+       Buy Now
+    </a>
+</div>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const sidebar = document.getElementById("sidebar");
+    const menuItems = sidebar.querySelectorAll("a, div a"); // all links/buttons inside sidebar
+
+    // Prepare items: initially shifted left and invisible
+    menuItems.forEach(item => {
+        item.style.transform = "translateX(-50px)";
+        item.style.opacity = "0";
+    });
+
+    // Open sidebar with sequential animation
+    window.openSidebar = function() {
+        sidebar.style.left = "0";
+
+        menuItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.style.transition = "transform 0.5s ease-out, opacity 0.5s ease-out";
+                item.style.transform = "translateX(0)";
+                item.style.opacity = "1";
+            }, index * 170); // 150ms delay per item
+        });
+    }
+
+    // Close sidebar
+    window.closeSidebar = function() {
+        sidebar.style.left = "-280px";
+
+        // Reset items to start position for next open
+        menuItems.forEach(item => {
+            item.style.transition = "none";
+            item.style.transform = "translateX(-50px)";
+            item.style.opacity = "0";
+        });
+    }
+
+    // Close sidebar on click outside
+    document.addEventListener("click", function(event) {
+        if (sidebar.style.left === "0px") { 
+            const isClickInside = sidebar.contains(event.target);
+            const isHamburger = event.target.closest("[onclick='openSidebar()']");
+            if (!isClickInside && !isHamburger) {
+                closeSidebar();
+            }
+        }
+    });
+});
+</script>
+
+
+
+
+
+<!-- Moving Text Section Begin -->
+<section style="background: #1a1a1a; overflow: hidden; position: relative; border-top: 3px solid #ffd700; border-bottom: 3px solid #ffd700; padding: 12px 0;">
+    
+    <div style="position: relative; width: 100%; overflow: hidden; border-radius: 6px; border: 2px solid #ffd700; background: rgba(255,215,0,0.05); box-shadow: 0 0 15px rgba(255,215,0,0.4);">
+
+        <!-- Shiny overlay -->
+        <div style="
+            position: absolute;
+            top: 0; left: -50%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,0,0.8), rgba(255,255,255,0.3));
+            transform: skewX(-25deg);
+            animation: shine 6s linear infinite;
+            pointer-events: none;
+        "></div>
+
+        <!-- Scrolling Text -->
+        <div style="
+            display: inline-block;
+            white-space: nowrap;
+            animation: moveText 90s linear infinite;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            font-size: 18px;
+            color: #fff;
+            padding: 10px 20px;
+            text-shadow: 0 0 5px #ffd700, 0 0 10px #ffec70;
+        ">
+           🚚✨ Enjoy free delivery on all orders over 3,000 PKR.
+
+🕌🎊 The Eid Sale is live – grab your favorites with up to 30% off!
+
+💎🌟 Experience premium skincare with instant results, only at SAFA’Z.
+
+🌸💧 Treat yourself to luxury skincare for a brighter, healthier you.
+
+☀️💦✨ Let your skin brighten, hydrate, and shine – results you’ll see immediately.
+
+💛🛍️ Discover amazing prices that you’ll truly love.
+🌺🔥 Say goodbye to dull skin.
+🌿 Anti-aging & rejuvenating creams.
+        </div>
+
+    </div>
+</section>
+
+<style>
+@keyframes moveText {
+    0% { transform: translateX(2%); }   /* Start offscreen right */
+    100% { transform: translateX(-100%); } /* Move fully left */
+}
+
+@keyframes shine {
+    0% { left: -50%; }
+    100% { left: 100%; }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    div[style*="white-space: nowrap;"] {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+}
+
+</style>
+
+<!-- ================= PREMIUM SHOP SECTION ================= -->
+<div class="mainSection">
+  <h2 class="mainHeading">Our Categories</h2>
+
+  <div class="categoryRow">
+    <div class="categoryItem activeCat" onclick="showProducts('faceShiner',this)">Face Shiner</div>
+    <div class="categoryItem" onclick="showProducts('handFeet',this)">Hand & Feet Care</div>
+    <div class="categoryItem" onclick="showProducts('serum',this)">Serum Collection</div>
+    <div class="categoryItem" onclick="showProducts('eye',this)">Eye Collection</div>
+  </div>
+
+  <div id="productsContainer" class="productsContainer"></div>
+</div>
+
+<!-- Floating Cart -->
+<div id="cartIcon" onclick="openCart()">🛒
+  <span id="cartCount">0</span>
+</div>
+
+<!-- CART POPUP -->
+<div id="cartPopup" class="cartPopup" onclick="outsideClose(event)">
+  <div class="cartBox">
+    <span class="closeCart" onclick="closeCart()">×</span>
+    <h3>Your Shopping Cart</h3>
+    <div id="cartItems"></div>
+    <h4 id="cartTotal">Your cart is empty</h4>
+   <button class="checkoutBtn" onclick="openCheckout()">Proceed To Checkout</button>
+  </div>
+</div>
+<!-- ================= CHECKOUT FORM POPUP ================= -->
+<div id="checkoutPopup" class="checkoutPopup">
+  <div class="checkoutBox">
+    <span class="closeCheckout" onclick="closeCheckout()">×</span>
+    <h2>Complete Your Order</h2>
+
+    <div id="orderSummary"></div>
+
+    <input type="text" id="custName" placeholder="Full Name">
+   <input type="tel" 
+       id="custPhone" 
+       placeholder="Enter Phone Number (03XXXXXXXXX)"
+       maxlength="13"
+       required>
+    <input type="text" id="custCity" placeholder="City">
+    <textarea id="custAddress" placeholder="Complete Address"></textarea>
+
+    <select id="paymentMethod">
+      <option value="">Select Payment Method</option>
+      <option value="Cash on Delivery">Cash on Delivery (COD)</option>
+      <option value="Online Payment">Online Payment</option>
+    </select>
+
+    <button class="completeOrderBtn" onclick="sendToWhatsApp()">Complete Order</button>
+  </div>
+</div>
+<!-- THANK YOU POPUP -->
+<div id="thankYouPopup" class="thankYouPopup">
+  <div class="thankYouBox">
+    <h2>🎉 Order Placed Successfully!</h2>
+    <p id="thankYouMessage"></p>
+    <button onclick="closeThankYou()">OK</button>
+  </div>
+</div>
+<!-- IMAGE MODAL -->
+<div id="imageModal" class="imageModal" onclick="closeModal()">
+  <img id="modalImage">
+</div>
+
+<style>
+body{
+  font-family:'Times New Roman',serif;
+  margin:0;
+  background:#fff;
+}
+.mainSection{
+  padding:30px 15px;
+  text-align:center;
+}
+.mainHeading{
+  font-size:2.3rem;
+  font-weight:700;
+}
+.categoryRow{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:12px;
+  margin-top:20px;
+}
+.categoryItem{
+  padding:10px 18px;
+  border-radius:30px;
+  border:2px solid #ffca1a;
+  cursor:pointer;
+  font-weight:700;
+  transition:0.3s;
+}
+.categoryItem:hover,
+.activeCat{
+  background:#ffca1a;
+}
+.productsContainer{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:18px;
+  margin-top:30px;
+}
+.productCard{
+  width:100%;
+  max-width:220px;
+  border:2px solid #ffca1a;
+  border-radius:15px;
+  padding:15px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  transition:0.3s;
+  background:#fffdf6;
+}
+.productCard:hover{
+  transform:translateY(-6px);
+}
+.productCard img{
+  width:100%;
+  border-radius:12px;
+  cursor:pointer;
+}
+.originalPrice{
+  text-decoration:line-through;
+  color:#888;
+  font-size:0.9rem;
+}
+.price{
+  color:#d62828;
+  font-weight:700;
+}
+.qtyBox{
+  margin-top:8px;
+}
+.qtyBox input{
+  width:60px;
+  padding:5px;
+  text-align:center;
+}
+.btn{
+  margin-top:6px;
+  padding:6px 10px;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:700;
+}
+.addBtn{
+  background:#ffca1a;
+}
+.buyBtn{
+  background:#000;
+  color:#fff;
+}
+.btn:hover{
+  opacity:0.85;
+}
+
+/* CART */
+#cartIcon{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:#ffca1a;
+  padding:15px;
+  border-radius:50%;
+  font-size:22px;
+  cursor:pointer;
+  z-index:999;
+}
+#cartCount{
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  background:#000;
+  color:#fff;
+  font-size:12px;
+  padding:3px 6px;
+  border-radius:50%;
+}
+.cartPopup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.5);
+  justify-content:center;
+  align-items:center;
+  animation:fadeIn 0.3s ease;
+}
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+.cartBox{
+  background:#fff;
+  width:95%;
+  max-width:420px;
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 20px 50px rgba(0,0,0,0.25);
+  position:relative;
+  animation:slideUp 0.3s ease;
+}
+@keyframes slideUp{
+  from{transform:translateY(30px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}
+.closeCart{
+  position:absolute;
+  right:15px;
+  top:10px;
+  font-size:24px;
+  cursor:pointer;
+}
+.checkoutBtn{
+  width:100%;
+  padding:12px;
+  background:#000;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-weight:700;
+  margin-top:12px;
+}
+
+/* IMAGE MODAL */
+.imageModal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.8);
+  justify-content:center;
+  align-items:center;
+}
+.imageModal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+}
+.deleteBtn{
+  float:right;
+  cursor:pointer;
+  font-size:26px;          /* Bigger size */
+  color:#e63946;
+  background:#ffe5e5;
+  width:38px;
+  height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  transition:all 0.3s ease;
+}
+
+.deleteBtn:hover{
+  background:#e63946;
+  color:#fff;
+  transform:scale(1.15) rotate(-8deg);
+  box-shadow:0 6px 15px rgba(0,0,0,0.2);
+}
+.cartItemRow{
+  margin-bottom:12px;
+  padding-bottom:8px;
+  border-bottom:1px solid #eee;
+  text-align:left;
+}.checkoutPopup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+  z-index:2000;
+  font-family:'Times New Roman',serif;
+}
+
+.checkoutBox{
+   width: 90%; /* Allow for responsive width */
+    max-width: 420px; /* Limit max width on larger screens */
+    background: linear-gradient(135deg, #fff8dc, #ffecb3);
+    padding: 20px; /* Reduced padding for mobile */
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.3s ease;
+    max-height: 80vh; /* Maintain maximum height */
+    overflow-y: auto; /* Enable scrolling */
+}
+
+@keyframes fadeInUp{
+  from{transform:translateY(30px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
+}
+
+.checkoutBox h2{
+  text-align:center;
+  margin-bottom:15px;
+  font-weight:700;
+}
+
+.checkoutBox input,
+.checkoutBox textarea,
+.checkoutBox select{
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:8px;
+  border:1px solid #ccc;
+  font-family:'Times New Roman',serif;
+    font-size: 1em; /* Use relative font size */
+}
+
+.checkoutBox textarea{
+  resize:none;
+  height:70px;
+}
+
+.completeOrderBtn{
+  width:100%;
+  padding:12px;
+  background:#000;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.completeOrderBtn:hover{
+  background:#ffca1a;
+  color:#000;
+}
+
+.closeCheckout{
+  float:right;
+  font-size:22px;
+  cursor:pointer;
+}
+
+#orderSummary{
+  background:#fff;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:10px;
+  font-size:14px;
+  .checkoutPopup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+  overflow-y:auto;
+  padding:15px;
+}
+
+.checkoutBox{
+  width:100%;
+  max-width:420px;
+  background:#fff8dc;
+  border-radius:20px;
+  max-height:95vh;
+  overflow-y:auto;
+  scroll-behavior:smooth;
+  padding:20px;
+}
+
+/* Sticky Header */
+.checkoutHeader{
+  position:sticky;
+  top:0;
+  background:#fff8dc;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-bottom:10px;
+  z-index:10;
+}
+
+/* Big Close Button */
+.bigCloseBtn{
+  font-size:22px;
+  background:black;
+  color:white;
+  border:none;
+  border-radius:50%;
+  width:40px;
+  height:40px;
+  cursor:pointer;
+}
+
+.bigCloseBtn:hover{
+  background:#ffca1a;
+  color:black;
+}
+}
+.thankYouPopup{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  justify-content:center;
+  align-items:center;
+  z-index:3000;
+  font-family:'Times New Roman',serif;
+}
+
+.thankYouBox{
+  background:linear-gradient(135deg,#fff8dc,#ffecb3);
+  padding:30px;
+  border-radius:20px;
+  text-align:center;
+  width:90%;
+  max-width:400px;
+  animation:fadeIn 0.3s ease;
+}
+
+.thankYouBox h2{
+  margin-bottom:15px;
+}
+
+.thankYouBox p{
+  margin-bottom:20px;
+  font-size:16px;
+}
+
+.thankYouBox button{
+  padding:10px 25px;
+  border:none;
+  border-radius:8px;
+  background:black;
+  color:white;
+  cursor:pointer;
+}
+
+.thankYouBox button:hover{
+  background:#ffca1a;
+  color:black;
+}
+
+@keyframes fadeIn{
+  from{transform:scale(0.9);opacity:0;}
+  to{transform:scale(1);opacity:1;}
+}
+
+</style>
+
+<script>
+let cart=[];
+
+const products={
+faceShiner:[
+{name:"Whitening Cream",img:"face1.jpg",price:950,original:1200},
+{name:"Skin Polish",img:"face2.jpg",price:720,original:900}
+],
+handFeet:[
+{name:"Hand Cream",img:"hand1.jpg",price:640,original:800}
+],
+serum:[
+{name:"Glow Serum",img:"serum1.jpg",price:1200,original:1500}
+],
+eye:[
+{name:"Highlighter",img:"eye1.jpg",price:680,original:850}
+]
+};
+
+function showProducts(category,el){
+document.querySelectorAll('.categoryItem').forEach(c=>c.classList.remove('activeCat'));
+if(el)el.classList.add('activeCat');
+
+const container=document.getElementById('productsContainer');
+container.innerHTML='';
+products[category].forEach((p,i)=>{
+container.innerHTML+=`
+<div class="productCard">
+<img src="${p.img}" onclick="openModal('${p.img}')">
+<h4>${p.name}</h4>
+<div><span class="originalPrice">PKR ${p.original}</span>
+<span class="price"> PKR ${p.price}</span></div>
+
+<div class="qtyBox">
+<input type="number" min="1" value="1" onchange="updateLiveTotal(this,${p.price})">
+<div class="price">Total: PKR ${p.price}</div>
+
+<button class="btn addBtn" onclick="addToCart('${category}',${i},this)">Add To Cart</button>
+<button class="btn buyBtn" onclick="buyNow('${category}',${i},this)">Buy Now</button>
+</div>
+</div>`;
+});
+}
+
+function updateLiveTotal(input,price){
+let total=input.value*price;
+input.nextElementSibling.innerText="Total: PKR "+total;
+}
+
+function addToCart(category,index,btn){
+let card=btn.closest('.productCard');
+let qty=parseInt(card.querySelector('input').value);
+let product=products[category][index];
+
+let existing=cart.find(i=>i.name===product.name);
+if(existing){
+existing.qty+=qty;
+}else{
+cart.push({...product,qty});
+}
+updateCart();
+}
+
+function buyNow(category,index,btn){
+addToCart(category,index,btn);
+openCart();
+}
+
+function updateCart(){
+document.getElementById('cartCount').innerText=
+cart.reduce((a,b)=>a+b.qty,0);
+
+let cartItems=document.getElementById('cartItems');
+cartItems.innerHTML='';
+let total=0;
+
+cart.forEach((item,index)=>{
+let itemTotal=item.qty*item.price;
+total+=itemTotal;
+
+cartItems.innerHTML+=`
+<div class="cartItemRow">
+<span class="deleteBtn" onclick="removeItem(${index})">🗑</span>
+<strong>${item.name}</strong><br>
+Qty: ${item.qty} × PKR ${item.price}<br>
+Total: PKR ${itemTotal}
+</div>`;
+});
+
+document.getElementById('cartTotal').innerText="Total: PKR "+total;
+}
+
+function removeItem(index){
+cart.splice(index,1);
+updateCart();
+}
+
+function openCart(){
+document.getElementById('cartPopup').style.display='flex';
+}
+
+function closeCart(){
+document.getElementById('cartPopup').style.display='none';
+}
+
+function outsideClose(e){
+if(e.target.id==="cartPopup"){closeCart();}
+}
+
+function openModal(img){
+document.getElementById('modalImage').src=img;
+document.getElementById('imageModal').style.display='flex';
+}
+
+function closeModal(){
+document.getElementById('imageModal').style.display='none';
+}
+
+window.onload=function(){
+showProducts('faceShiner',document.querySelector('.categoryItem'));
+};
+// OPEN CHECKOUT
+function openCheckout(){
+  if(cart.length===0){
+    alert("Your cart is empty!");
+    return;
+  }
+
+  let summaryHTML="";
+  let total=0;
+
+  cart.forEach(item=>{
+    let itemTotal=item.qty*item.price;
+    total+=itemTotal;
+    summaryHTML+=`
+    <div>
+      ${item.name}<br>
+      Qty: ${item.qty} × PKR ${item.price}<br>
+      Item Total: PKR ${itemTotal}
+      <hr>
+    </div>`;
+  });
+
+  summaryHTML+=`<strong>Grand Total: PKR ${total}</strong>`;
+
+  document.getElementById("orderSummary").innerHTML=summaryHTML;
+  document.getElementById("checkoutPopup").style.display="flex";
+}
+
+// Close if user clicks outside the box
+document.getElementById("checkoutPopup").addEventListener("click", function(e){
+  if(e.target === this){
+    closeCheckout();
+  }
+});
+
+// Close with ESC key
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape"){
+    closeCheckout();
+  }
+});
+// CLOSE CHECKOUT
+function closeCheckout(){
+  document.getElementById("checkoutPopup").style.display="none";
+}
+
+// GENERATE UNIQUE ORDER NUMBER
+function generateOrderNumber(){
+  return "SFA" + Date.now().toString().slice(-6);
+}
+
+// SEND TO WHATSAPP
+function sendToWhatsApp(){
+
+  let name=document.getElementById("custName").value.trim();
+  let phone=document.getElementById("custPhone").value.trim();
+  let city=document.getElementById("custCity").value.trim();
+  let address=document.getElementById("custAddress").value.trim();
+  let payment=document.getElementById("paymentMethod").value;
+
+  if(!name || !phone || !city || !address || !payment){
+    alert("Please fill all fields!");
+    return;
+  }
+
+  let orderNumber=generateOrderNumber();
+  let total=0;
+  let itemsText="";
+
+  cart.forEach(item=>{
+    let itemTotal=item.qty*item.price;
+    total+=itemTotal;
+
+    itemsText+=`
+• ${item.name}
+  Qty: ${item.qty}
+  Price: PKR ${item.price}
+  Item Total: PKR ${itemTotal}
+`;
+  });
+
+  let message=`
+🛍️ *NEW ORDER RECEIVED*
+-------------------------
+Order No: ${orderNumber}
+
+Items:
+${itemsText}
+
+Total Amount: PKR ${total}
+
+Customer Details:
+Name: ${name}
+Phone: ${phone}
+City: ${city}
+Address: ${address}
+Payment Method: ${payment}
+
+Thank you for choosing SAFA'z 🌸
+`;
+
+  let whatsappURL="https://wa.me/923493000195?text="+encodeURIComponent(message);
+  window.open(whatsappURL,"_blank");
+
+  // Show Thank You Popup BEFORE clearing
+function showThankYou(name){
+  document.getElementById("thankYouMessage").innerHTML =
+    "Thank you <strong>" + name + "</strong> for shopping with SAFA 🌸<br><br>Our team will proceed your order shortly.";
+
+  document.getElementById("thankYouPopup").style.display = "flex";
+  document.body.style.overflow="hidden";
+}
+
+// Close Thank You
+function closeThankYou(){
+  document.getElementById("thankYouPopup").style.display = "none";
+  document.body.style.overflow="auto";
+
+  // Clear cart after confirmation
+  cart = [];
+  updateCart();
+  closeCheckout();
+}
+  cart=[];
+  updateCart();
+  closeCheckout();
+}
+function buyNow(category,index,btn){
+  addToCart(category,index,btn);
+  openCheckout();
+}
+
+</script>
+
 
 
     <!-- Product Start -->
