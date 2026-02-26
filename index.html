@@ -292,6 +292,55 @@
     </a>
 </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const sidebar = document.getElementById("sidebar");
+    const menuItems = sidebar.querySelectorAll("a, div a"); // all links/buttons inside sidebar
+
+    // Prepare items: initially shifted left and invisible
+    menuItems.forEach(item => {
+        item.style.transform = "translateX(-50px)";
+        item.style.opacity = "0";
+    });
+
+    // Open sidebar with sequential animation
+    window.openSidebar = function() {
+        sidebar.style.left = "0";
+
+        menuItems.forEach((item, index) => {
+            setTimeout(() => {
+                item.style.transition = "transform 0.5s ease-out, opacity 0.5s ease-out";
+                item.style.transform = "translateX(0)";
+                item.style.opacity = "1";
+            }, index * 150); // 150ms delay per item
+        });
+    }
+
+    // Close sidebar
+    window.closeSidebar = function() {
+        sidebar.style.left = "-280px";
+
+        // Reset items to start position for next open
+        menuItems.forEach(item => {
+            item.style.transition = "none";
+            item.style.transform = "translateX(-50px)";
+            item.style.opacity = "0";
+        });
+    }
+
+    // Close sidebar on click outside
+    document.addEventListener("click", function(event) {
+        if (sidebar.style.left === "0px") { 
+            const isClickInside = sidebar.contains(event.target);
+            const isHamburger = event.target.closest("[onclick='openSidebar()']");
+            if (!isClickInside && !isHamburger) {
+                closeSidebar();
+            }
+        }
+    });
+});
+</script>
+
 
 
 
@@ -1374,6 +1423,7 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
