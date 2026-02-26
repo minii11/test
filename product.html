@@ -453,9 +453,24 @@ document.addEventListener("DOMContentLoaded", () => {
 <!-- THANK YOU POPUP -->
 <div id="thankYouPopup" class="thankYouPopup">
   <div class="thankYouBox">
-    <h2>🎉 Order Placed Successfully!</h2>
+    <h2>Order Placed Successfully!</h2>
     <p id="thankYouMessage"></p>
-    <button onclick="closeThankYou()">OK</button>
+  <button
+    style="
+        background: linear-gradient(to right, #FFD700, #FF8C00); /* Gradient background */
+        color: white;            /* White text */
+        border: none;            /* No border */
+        padding: 12px 24px;      /* Padding for the button */
+        font-size: 18px;         /* Font size */
+        font-weight: bold;       /* Bold text */
+        cursor: pointer;         /* Pointer cursor */
+        border-radius: 25px;     /* More rounded edges */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+    "
+    onclick="document.getElementById('thankYouPopup').style.display='none'; document.body.style.overflow='auto';">
+    OK
+</button>
   </div>
 </div>
 <!-- IMAGE MODAL -->
@@ -683,7 +698,7 @@ body{
     border-radius: 20px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     animation: fadeInUp 0.3s ease;
-    max-height: 80vh; /* Maintain maximum height */
+    max-height: auto; /* Maintain maximum height */
     overflow-y: auto; /* Enable scrolling */
 }
 
@@ -995,6 +1010,13 @@ function openCheckout(){
   document.getElementById("checkoutPopup").style.display="flex";
 }
 
+// Show thank you message after 2 seconds
+    setTimeout(() => {
+        let customerName = document.getElementById("custName").value.trim();
+        showThankYou(customerName); // Call the function to show the thank you message
+    }, 2000); // 2000 milliseconds = 2 seconds
+
+
 // Close if user clicks outside the box
 document.getElementById("checkoutPopup").addEventListener("click", function(e){
   if(e.target === this){
@@ -1018,6 +1040,7 @@ function generateOrderNumber(){
   return "SFA" + Date.now().toString().slice(-6);
 }
 
+
 // SEND TO WHATSAPP
 function sendToWhatsApp(){
 
@@ -1032,7 +1055,9 @@ function sendToWhatsApp(){
     return;
   }
 
+
   let orderNumber=generateOrderNumber();
+  
   let total=0;
   let itemsText="";
 
@@ -1068,18 +1093,51 @@ Payment Method: ${payment}
 Thank you for choosing SAFA'z 🌸
 `;
 
+// Show thank you message after 2 seconds
+    setTimeout(() => {
+        let customerName = document.getElementById("custName").value.trim();
+        showThankYou(customerName); // Call the function to show the thank you message
+    }, 2000); // 2000 milliseconds = 2 seconds
+function showThankYou() {
+    // Get the customer's name from the input field
+    const name = document.getElementById("custName").value.trim();
+
+    // Display the thank you message
+    document.getElementById("thankYouMessage").innerHTML =
+        "Thank you <strong>" + name + "</strong> for shopping with SAFA'z<br><br>Our team will process your order shortly.";
+
+    // Show the thank you popup
+    document.getElementById("thankYouPopup").style.display = "flex"; 
+    document.body.style.overflow = "hidden"; // Prevent background scrolling
+}
+
+// Close Thank You Popup function
+function closeThankYou() {
+    const popup = document.getElementById("thankYouPopup");
+    if (!popup) return;
+
+    popup.style.display = "none";          // Hide the popup
+    document.body.style.overflow = "auto"; // Restore background scrolling
+
+    // Refresh the page
+    location.reload();
+}
+
+// Optional: Close popup if user clicks outside the box
+window.addEventListener("click", function(e) {
+    const popup = document.getElementById("thankYouPopup");
+    if (!popup) return;
+
+    // If the click is on the overlay (outside the inner box)
+    if (e.target === popup) {
+        closeThankYou();
+    }
+});
   let whatsappURL="https://wa.me/923493000195?text="+encodeURIComponent(message);
   window.open(whatsappURL,"_blank");
 
-  // Show Thank You Popup BEFORE clearing
-function showThankYou(name){
-  document.getElementById("thankYouMessage").innerHTML =
-    "Thank you <strong>" + name + "</strong> for shopping with SAFA 🌸<br><br>Our team will proceed your order shortly.";
 
-  document.getElementById("thankYouPopup").style.display = "flex";
-  document.body.style.overflow="hidden";
-}
-
+  
 // Close Thank You
 function closeThankYou(){
   document.getElementById("thankYouPopup").style.display = "none";
