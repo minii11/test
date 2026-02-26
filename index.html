@@ -363,11 +363,47 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p style="color: white; margin-bottom: 1rem; animation: slideInRight;">
                    Magnis dis parturient montes.
                 </p>
-               <a href="" class="btn py-2 px-4 me-2" 
-   style="background-color: #ffe880; color: black; border: 2px solid black; border-radius: 6px; animation: slideInRight 1s;">Shop Now</a>
+<a href="" class="btn py-2 px-5 me-2" 
+   style="
+       background: linear-gradient(135deg, #ffeb6a, #ffd700);
+       color: #000;
+       font-weight: bold;
+       font-family: 'Times New Roman', serif;
+       font-size: 16px;
+       border: 2px solid #000;
+       border-radius: 8px;
+       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+       transition: all 0.3s ease;
+       animation: slideInRight 1s;
+       text-transform: uppercase;
+       letter-spacing: 1px;
+   "
+   onmouseover="this.style.background='linear-gradient(135deg, #ffd700, #ffeb6a)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.4)';"
+   onmouseout="this.style.background='linear-gradient(135deg, #ffeb6a, #ffd700)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.3)';"
+>
+   Shop Now
+</a>
 
-<a href="" class="btn py-2 px-4" 
-   style="background-color: transparent; color: black; border: 2px solid black; border-radius: 6px; animation: slideInRight 1s;">Contact Us</a>
+<a href="" class="btn py-2 px-5" 
+   style="
+       background: transparent;
+       color: #000;
+       font-weight: bold;
+       font-family: 'Times New Roman', serif;
+       font-size: 16px;
+       border: 2px solid #000;
+       border-radius: 8px;
+       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+       transition: all 0.3s ease;
+       animation: slideInRight 1s;
+       text-transform: uppercase;
+       letter-spacing: 1px;
+   "
+   onmouseover="this.style.background='#ffe880'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.3)';"
+   onmouseout="this.style.background='transparent'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.2)';"
+>
+   Contact Us
+</a>
             </div>
             <div class="col-12 col-lg-6 text-center">
                 <img class="img-fluid animated pulse infinite" src="main.jpg" alt="" style="max-height: 300px; object-fit: cover;">
@@ -1429,6 +1465,7 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
