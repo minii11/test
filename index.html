@@ -55,103 +55,202 @@
 </head>
 
 <body>
-    <!-- Spinner Start -->
-    <div id="spinner"
-        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-        <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem;" role="status">
-            <span class="sr-only">Loading...</span>
-        </div>
+     <!-- Spinner Start -->
+<div id="spinner"
+     class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-warning" style="width: 3rem; height: 3rem;" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
-<!-- Navbar Start -->
+</div>
+
 <!-- TOP NAVBAR -->
-<div style="width: 100%; background: white; padding: 15px 20px; display: flex; align-items: center; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); position: sticky; top: 0; z-index: 1000;">
+<div style="
+    width: 100%;
+    background: white;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+">
 
     <!-- Hamburger Button -->
-    <div onclick="openSidebar()" style="font-size: 30px; cursor: pointer; color: #ffca1a; font-weight: bold; margin-right: auto;">
+    <div onclick="openSidebar()" style="
+        font-size: 32px;
+        cursor: pointer;
+        color: #ffca1a;
+        font-weight: bold;
+        transition: transform 0.3s;
+    " onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">
         ☰
     </div>
 
-    <!-- Logo Image -->
-    <img src="logo.jpg" alt="Logo" style="height: 60px; width: auto; margin-right: 10px;"/>
-<h2 style="
-    font-family: 'Great Vibes', cursive;
-    font-size: 3rem;
-    margin: 0;
-    font-weight: 800;  /* bold as you wanted */
-    color: #ffca1a;
-    background: linear-gradient(45deg, #ffd700, #ffcc33);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 
-        2px 2px 8px rgba(0,0,0,0.4),
-        0 0 10px rgba(255,215,0,0.6);
-    letter-spacing: 1px;
-">
-    SAFA'<span style="font-size: 0.65em; vertical-align: middle;">Z</span>
-</h2>
-
-
-
-
-
-
+    <!-- Logo + Text -->
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="logo.jpg" alt="Logo" style="height: 60px; width: auto; border-radius:12px; box-shadow:0 0 15px rgba(255,202,26,0.7);" />
+        <h2 style="
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            margin: 0;
+            font-weight: 800;
+            color: #ffca1a;
+            background: linear-gradient(45deg, #ffd700, #ffcc33);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.35), 0 0 12px rgba(255,215,0,0.6);
+            letter-spacing: 1px;
+        ">
+            SAFA'<span style="font-size:0.65em; vertical-align: middle;">Z</span>
+        </h2>
+    </div>
 </div>
-
 
 <!-- SIDEBAR -->
 <div id="sidebar" 
-     style="height:100%; width:260px; position:fixed; top:0; left:-260px; background:white; overflow-x:hidden; transition:0.4s; box-shadow:5px 0 20px rgba(0,0,0,0.1); z-index:2000; padding-top:60px;">
+     style="
+        height:100%;
+        width:260px;
+        position:fixed;
+        top:0;
+        left:-280px;
+        background: linear-gradient(180deg, #fffde7, #ffe880);
+        overflow-x:hidden;
+        transition:0.5s ease;
+        box-shadow:5px 0 25px rgba(0,0,0,0.2);
+        z-index:2000;
+        padding-top:80px;
+        border-right:2px solid #ffca1a;
+        border-radius:0 20px 20px 0;
+     ">
 
     <!-- Close Button -->
     <a href="javascript:void(0)" onclick="closeSidebar()" 
-       style="position:absolute; top:15px; left:25px; font-size:30px; text-decoration:none; color:#ffca1a; font-weight:bold;">
+       style="
+            position:absolute; 
+            top:20px; 
+            right:20px; 
+            font-size:36px; 
+            text-decoration:none; 
+            color:#ffca1a; 
+            font-weight:bold;
+            transition: transform 0.3s, color 0.3s;
+       "
+       onmouseover="this.style.transform='rotate(90deg)'; this.style.color='#ffd700';"
+       onmouseout="this.style.transform='rotate(0deg)'; this.style.color='#ffca1a';"
+    >
         ×
     </a>
 
-    <!-- Menu Links -->
-    <a href="index.html" 
-       style="display:block; padding:15px 30px; text-decoration:none; color:#333; font-weight:700; font-size:18px; border-bottom:1px solid #f1f1f1;">
-       Home
+   <!-- Menu Links -->
+<a href="index.html" style="
+    display:block;
+    padding:18px 30px;
+    text-decoration:none;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+" onmouseover="this.style.background='#ffca1a'; this.style.color='black'; this.style.fontWeight='900'; this.style.boxShadow='0 0 15px rgba(255,202,26,0.7)'" 
+   onmouseout="this.style.background='transparent'; this.style.color='black'; this.style.fontWeight='700'; this.style.boxShadow='none'">
+   Home
+</a>
+
+<a href="about.html" style="
+    display:block;
+    padding:18px 30px;
+    text-decoration:none;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+" onmouseover="this.style.background='#ffca1a'; this.style.color='black'; this.style.fontWeight='900'; this.style.boxShadow='0 0 15px rgba(255,202,26,0.7)'" 
+   onmouseout="this.style.background='transparent'; this.style.color='black'; this.style.fontWeight='700'; this.style.boxShadow='none'">
+   About
+</a>
+
+<a href="product.html" style="
+    display:block;
+    padding:18px 30px;
+    text-decoration:none;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+" onmouseover="this.style.background='#ffca1a'; this.style.color='black'; this.style.fontWeight='900'; this.style.boxShadow='0 0 15px rgba(255,202,26,0.7)'" 
+   onmouseout="this.style.background='transparent'; this.style.color='black'; this.style.fontWeight='700'; this.style.boxShadow='none'">
+   Products
+</a>
+
+<a href="feature.html" style="
+    display:block;
+    padding:18px 30px;
+    text-decoration:none;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+" onmouseover="this.style.background='#ffca1a'; this.style.color='black'; this.style.fontWeight='900'; this.style.boxShadow='0 0 15px rgba(255,202,26,0.7)'" 
+   onmouseout="this.style.background='transparent'; this.style.color='black'; this.style.fontWeight='700'; this.style.boxShadow='none'">
+   Features
+</a>
+
+<a href="contact.html" style="
+    display:block;
+    padding:18px 30px;
+    text-decoration:none;
+    color:black;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:700;
+    font-size:18px;
+    text-align:center;
+    border-bottom:1px solid rgba(0,0,0,0.05);
+    transition: all 0.3s;
+" onmouseover="this.style.background='#ffca1a'; this.style.color='black'; this.style.fontWeight='900'; this.style.boxShadow='0 0 15px rgba(255,202,26,0.7)'" 
+   onmouseout="this.style.background='transparent'; this.style.color='black'; this.style.fontWeight='700'; this.style.boxShadow='none'">
+   Contact
+</a>
+
+<!-- Button -->
+<div style="padding:25px;">
+    <a href="#" style="
+        display:block;
+        background:#ffca1a;
+        color:black;
+        text-align:center;
+        padding:14px;
+        font-weight:800;
+        font-family: 'Times New Roman', Times, serif;
+        text-decoration:none;
+        border-radius:12px;
+        box-shadow:0 5px 20px rgba(255,202,26,0.6);
+        transition: transform 0.3s, box-shadow 0.3s;
+    " onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 25px rgba(255,202,26,0.8)'; this.style.fontWeight='900'" 
+      onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 5px 20px rgba(255,202,26,0.6)'; this.style.fontWeight='800'">
+       Buy Now
     </a>
-
-    <a href="about.html" 
-       style="display:block; padding:15px 30px; text-decoration:none; color:#333; font-weight:700; font-size:18px; border-bottom:1px solid #f1f1f1;">
-       About
-    </a>
-
-    <a href="product.html" 
-       style="display:block; padding:15px 30px; text-decoration:none; color:#333; font-weight:700; font-size:18px; border-bottom:1px solid #f1f1f1;">
-       Products
-    </a>
-
-    <a href="feature.html" 
-       style="display:block; padding:15px 30px; text-decoration:none; color:#333; font-weight:700; font-size:18px; border-bottom:1px solid #f1f1f1;">
-       Features
-    </a>
-
-    <a href="contact.html" 
-       style="display:block; padding:15px 30px; text-decoration:none; color:#333; font-weight:700; font-size:18px; border-bottom:1px solid #f1f1f1;">
-       Contact
-    </a>
-
-    <!-- Button -->
-    <div style="padding:25px;">
-        <a href="#" 
-           style="display:block; background:#ffca1a; color:white; text-align:center; padding:12px; font-weight:800; text-decoration:none; border-radius:8px;">
-           Buy Now
-        </a>
-    </div>
-
+</div>
 </div>
 
 
-<div id="overlay" 
-     onclick="closeSidebar()" 
-     style="position:fixed; top:0; left:0; width:100%; height:100%; 
-            background:rgba(0,0,0,0.3); 
-            display:none; 
-            z-index:1500;">
-</div>
+
+
+
+
 
   <!-- Hero Start -->
 <div class="container-fluid" style="background-color: #ffe880; padding: 2rem 0;">
@@ -1228,6 +1327,7 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
