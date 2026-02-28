@@ -657,17 +657,17 @@ Place Order
 </div>
 
 <script>
-// Function to show the contact options modal
+// Show modal
 function showModal() {
     document.getElementById('modal').style.display = 'flex';
 }
 
-// Function to close the contact options modal
+// Close modal
 function closeModal() {
     document.getElementById('modal').style.display = 'none';
 }
 
-// Function to send a message via WhatsApp
+// Send WhatsApp message
 function sendToWhatsApp(phone) {
     const message = "Your order message here.";
     const whatsappURL = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
@@ -675,25 +675,25 @@ function sendToWhatsApp(phone) {
     closeModal();
 }
 
-/* ✅ MOBILE-FRIENDLY CLOSE FIX */
+// Seamless mobile & desktop closing
 document.addEventListener("DOMContentLoaded", function() {
     const modal = document.getElementById("modal");
     const modalContent = document.getElementById("modal-content");
 
-    // Close modal if tapping outside modal content (click or touch)
-    function outsideClickHandler(e) {
-        if (!modalContent.contains(e.target)) {
+    // Function to handle outside tap/click
+    function handleOutsideClose(event) {
+        if (!modalContent.contains(event.target)) {
             closeModal();
         }
     }
 
-    // Desktop click
-    modal.addEventListener("click", outsideClickHandler);
+    // Detect clicks outside
+    modal.addEventListener("click", handleOutsideClose);
 
-    // Mobile touch
-    modal.addEventListener("touchstart", outsideClickHandler);
+    // Detect touch on mobile outside
+    modal.addEventListener("touchstart", handleOutsideClose);
 
-    // Prevent closing when clicking inside modal content
+    // Prevent closing when interacting inside modal
     modalContent.addEventListener("click", function(e) {
         e.stopPropagation();
     });
@@ -702,7 +702,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// Animation
+// Animation (unchanged)
 const style = document.createElement('style');
 style.innerHTML = `
 @keyframes fadeSlide {
@@ -1683,4 +1683,5 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
+
 
