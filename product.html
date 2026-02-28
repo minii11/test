@@ -527,7 +527,7 @@ font-weight:800;
 text-align:center;
 color:#222;
 ">
-💬 Choose any one of them!
+💬 Place your order to any one of them !
 </h3>
 
 <!-- Contact 1 -->
@@ -574,7 +574,7 @@ Customer Services Manager
 Friendly and responsive support expert, helping customers quickly complete their orders smoothly.
 </p>
 
-<button onclick="sendToWhatsApp('+923364454964')" 
+<button onclick="sendToWhatsApp('+923314889416')" 
 style="
 background:linear-gradient(135deg,#25D366,#1ebe5d);
 color:white;
@@ -675,14 +675,31 @@ function sendToWhatsApp(phone) {
     closeModal();
 }
 
-/* ✅ MOBILE & DESKTOP SAFE CLOSE FIX */
-document.addEventListener("click", function(event) {
+/* ✅ MOBILE-FRIENDLY CLOSE FIX */
+document.addEventListener("DOMContentLoaded", function() {
     const modal = document.getElementById("modal");
-    const content = document.getElementById("modal-content");
+    const modalContent = document.getElementById("modal-content");
 
-    if (modal.style.display === "flex" && !content.contains(event.target) && event.target.id !== "modal-content") {
-        closeModal();
+    // Close modal if tapping outside modal content (click or touch)
+    function outsideClickHandler(e) {
+        if (!modalContent.contains(e.target)) {
+            closeModal();
+        }
     }
+
+    // Desktop click
+    modal.addEventListener("click", outsideClickHandler);
+
+    // Mobile touch
+    modal.addEventListener("touchstart", outsideClickHandler);
+
+    // Prevent closing when clicking inside modal content
+    modalContent.addEventListener("click", function(e) {
+        e.stopPropagation();
+    });
+    modalContent.addEventListener("touchstart", function(e) {
+        e.stopPropagation();
+    });
 });
 
 // Animation
@@ -1666,3 +1683,4 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
+
