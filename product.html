@@ -446,7 +446,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <option value="Cash on Delivery">Cash on Delivery (COD)</option>
       <option value="Online Payment">Online Payment</option>
     </select>
-<!-- Premium Complete Order Button -->
+
+    <!-- Premium Complete Order Button -->
 <button class="completeOrderBtn" onclick="showModal()" 
 style="
 background: linear-gradient(135deg,#ffca1a,#ff9800);
@@ -657,17 +658,17 @@ Place Order
 </div>
 
 <script>
-// Show modal
+// Function to show the contact options modal
 function showModal() {
     document.getElementById('modal').style.display = 'flex';
 }
 
-// Close modal
+// Function to close the contact options modal
 function closeModal() {
     document.getElementById('modal').style.display = 'none';
 }
 
-// Send WhatsApp message
+// Function to send a message via WhatsApp
 function sendToWhatsApp(phone) {
     const message = "Your order message here.";
     const whatsappURL = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
@@ -675,34 +676,14 @@ function sendToWhatsApp(phone) {
     closeModal();
 }
 
-// Seamless mobile & desktop closing
-document.addEventListener("DOMContentLoaded", function() {
-    const modal = document.getElementById("modal");
-    const modalContent = document.getElementById("modal-content");
-
-    // Function to handle outside tap/click
-    function handleOutsideClose(event) {
-        if (!modalContent.contains(event.target)) {
-            closeModal();
-        }
+// Better mobile click detection
+document.getElementById("modal").addEventListener("click", function(event) {
+    if (event.target === this) {
+        closeModal();
     }
-
-    // Detect clicks outside
-    modal.addEventListener("click", handleOutsideClose);
-
-    // Detect touch on mobile outside
-    modal.addEventListener("touchstart", handleOutsideClose);
-
-    // Prevent closing when interacting inside modal
-    modalContent.addEventListener("click", function(e) {
-        e.stopPropagation();
-    });
-    modalContent.addEventListener("touchstart", function(e) {
-        e.stopPropagation();
-    });
 });
 
-// Animation (unchanged)
+// Animation
 const style = document.createElement('style');
 style.innerHTML = `
 @keyframes fadeSlide {
@@ -1683,5 +1664,3 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
-
-
