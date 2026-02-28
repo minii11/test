@@ -465,23 +465,27 @@ function sendToWhatsApp(phone) {
     closeModal();
 }
 
-/* ✅ MOBILE SAFE CLOSE FIX */
-const modal = document.getElementById("modal");
-const modalContent = document.getElementById("modal-content");
+/* ✅ SAFE MOBILE FIX (runs after page loads) */
+document.addEventListener("DOMContentLoaded", function () {
 
-// Close when tapping outside content (Mobile + Desktop)
-modal.addEventListener("click", function(e) {
-    if (!modalContent.contains(e.target)) {
-        closeModal();
-    }
+    const modal = document.getElementById("modal");
+    const modalContent = document.getElementById("modal-content");
+
+    // Close when tapping outside content
+    modal.addEventListener("click", function (e) {
+        if (!modalContent.contains(e.target)) {
+            closeModal();
+        }
+    });
+
+    // Prevent closing when clicking inside
+    modalContent.addEventListener("click", function (e) {
+        e.stopPropagation();
+    });
+
 });
 
-// Stop closing when clicking inside modal content
-modalContent.addEventListener("click", function(e) {
-    e.stopPropagation();
-});
-
-// Animation
+// Animation (unchanged)
 const style = document.createElement('style');
 style.innerHTML = `
 @keyframes fadeSlide {
