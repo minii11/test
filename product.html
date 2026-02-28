@@ -676,12 +676,12 @@ function sendToWhatsApp(phone) {
     closeModal();
 }
 
-// Close modal when clicking outside
-window.onclick = function(event) {
-    if (event.target == document.getElementById('modal')) {
+// Better mobile click detection
+document.getElementById("modal").addEventListener("click", function(event) {
+    if (event.target === this) {
         closeModal();
     }
-};
+});
 
 // Animation
 const style = document.createElement('style');
@@ -1664,3 +1664,4 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
+
