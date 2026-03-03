@@ -764,7 +764,7 @@ body{
     padding: 10px;
     margin-top: 10px;
     box-sizing: border-box;
-     border: none;
+   
 }
 
 /* Each product card */
@@ -780,6 +780,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+      overflow: hidden;
 }
 
 /* Hover effect for cards */
@@ -789,13 +790,15 @@ body{
 
 /* Product image - same size, no cropping */
 .productCard img {
-    width: 150%;
+    width: 130%;
     height: 200px; /* fixed height for uniformity */
     object-fit: contain; /* keep full image visible without cutting */
-    border-radius: 12px;
+    border-radius: 0px;
     display: block;
     cursor: pointer;
     background-color: #fffdf6; /* optional: fill empty space */
+    margin: -5px 0 5px -5px; /* visually skip the card border */
+    
 }
 
 /* Optional: very small screens */
@@ -1704,6 +1707,7 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
+
 
 
 
