@@ -1146,15 +1146,15 @@ body{
 </style>
 
 <script>
-let cart = [];
+let cart=[];
 
-const products = {
+const products={
 faceShiner:[
 {name:"<span style='font-size: 0.6rem;'>Safa'z 24k Gold Oxidizing Skin Polish Large Pack,(1000ml)peeling solution & (500grams) blonder powder",img:"s1.jpg",price:2999,original:3250},
 {name:"<span style='font-size: 0.6rem;'>Safa'z Gold 24k Skin Polish Peeling solution(200ml) & Blonder Powder(200 grams)",img:"s2.jpg",price:750 ,original:850},
 {name:"<span style='font-size: 0.6rem;'>Safa'z Hand & Foot Instant Whitening Cream (150grams)", img: "s3.jpg", price: 999, original: 1199, buyTwoPrice: 1899},
-{name:"<span style='font-size: 0.6rem;'>Safa'z All in One Ready 2 White Saffaron Urgent Facial (300grams)", img: "s4.jpg", price: 1199, original:1299, buyTwoPrice:1999},
-{name:"<span style='font-size: 0.6rem;'>Safa'z Natural Skin ShinerSoothing Aloevera(500ml)", img: "s5.jpg", price: 699, original: 799, buyTwoPrice: 1399}
+{name: "<span style='font-size: 0.6rem;'>Safa'z All in One Ready 2 White Saffaron Urgent Facial (300grams)", img: "s4.jpg", price: 1199, original:1299, buyTwoPrice:1999},
+{name: "<span style='font-size: 0.6rem;'>Safa'z Natural Skin ShinerSoothing Aloevera(500ml)", img: "s5.jpg", price: 699, original: 799, buyTwoPrice: 1399}
 ],
 handFeet:[
 {name:"<span style='font-size: 0.6rem;'>Hand Cream",img:"hand1.jpg",price:640,original:800}
@@ -1167,31 +1167,19 @@ eye:[
 ]
 };
 
-function showProducts(category, el){
-
+function showProducts(category,el){
 document.querySelectorAll('.categoryItem').forEach(c=>c.classList.remove('activeCat'));
-if(el) el.classList.add('activeCat');
+if(el)el.classList.add('activeCat');
 
-const container = document.getElementById('productsContainer');
-container.innerHTML = '';
-
+const container=document.getElementById('productsContainer');
+container.innerHTML='';
 products[category].forEach((p,i)=>{
-
-const productId = category + "_" + i;
-
-container.innerHTML += `
+container.innerHTML+=`
 <div class="productCard">
-
 <img src="${p.img}" onclick="openModal('${p.img}')">
-
 <h4>${p.name}</h4>
-
-<div>
-<span class="originalPrice">PKR ${p.original}</span>
-<span class="price"> PKR ${p.price}</span>
-</div>
-
-${p.buyTwoPrice ? `<div style="color:green;">Buy 2 for PKR ${p.buyTwoPrice}</div>` : ""}
+<div><span class="originalPrice">PKR ${p.original}</span>
+<span class="price"> PKR ${p.price}</span></div>
 
 <div class="qtyBox">
 <input type="number" min="1" value="1" onchange="updateLiveTotal(this,${p.price})">
@@ -1199,22 +1187,11 @@ ${p.buyTwoPrice ? `<div style="color:green;">Buy 2 for PKR ${p.buyTwoPrice}</div
 
 <button class="btn addBtn" onclick="addToCart('${category}',${i},this)">Add To Cart</button>
 <button class="btn buyBtn" onclick="buyNow('${category}',${i},this)">Buy Now</button>
-
-<button onclick="copyLink('${productId}')"
-style="margin-top:8px;width:100%;padding:8px;background:white;border:#ffca1a;border-radius:6px;font-weight:bold;cursor:pointer;">
-📋 Share Product Link
-</button>
-
 </div>
 </div>`;
 });
 }
 
-function copyLink(id){
-let url = "https://minii11.github.io/test/product.html?product=" + id;
-navigator.clipboard.writeText(url);
-alert("Product link copied!");
-}
 function updateLiveTotal(input,price){
 let total=input.value*price;
 input.nextElementSibling.innerText="Total: PKR "+total;
@@ -1730,8 +1707,6 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
-
-
 
 
 
