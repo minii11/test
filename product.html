@@ -785,9 +785,26 @@ body{
 /* GRID CONTAINER */
 .productGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
-  gap: 12px;
-  padding: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 equal columns */
+  gap: 12px;              /* space between items */
+  padding: 10px;           /* padding around the grid */
+  width: 100%;
+  box-sizing: border-box;  /* ensures padding doesn't break layout */
+}
+
+/* CARD */
+.productCard {
+  width: 100%;
+}
+
+/* IMAGE */
+.productCard img {
+  width: 100%;
+  aspect-ratio: 1 / 1;     /* makes all images square */
+  object-fit: cover;       /* fills box without stretching */
+  border-radius: 12px;
+  display: block;
+  cursor: pointer;
 }
 
 /* CARD */
@@ -1691,6 +1708,7 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
+
 
 
 
