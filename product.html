@@ -1217,7 +1217,7 @@ function showProducts(category, el) {
                 <button class="btn buyBtn" onclick="buyNow('${category}', ${i}, this)">Buy Now</button>
                 
                 <button class="btn share-btn" onclick="shareProduct('${category}', ${i}, '${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.img}')">
-                    <span class="share-icon">📤</span> Share
+                    <span class="share-icon">Share</span>📤 
                 </button>
             </div>
         </div>`;
@@ -1229,6 +1229,7 @@ async function shareProduct(category, index, name, price, img) {
     const cleanName = name.replace(/<[^>]*>?/gm, '');
     const baseUrl = 'https://minii11.github.io/test/product.html';
     const productUrl = `${baseUrl}?cat=${category}&idx=${index}`;
+     const productUrl = `${baseUrl}?cat=${category}&idx=${index}&img=${encodeURIComponent(img)}`;
     
     const shareData = {
         title: 'Safa\'z Product',
@@ -1821,6 +1822,7 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
+
 
 
 
