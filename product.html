@@ -1167,69 +1167,75 @@ body{
 <script>
 let cart=[];
 
-const products={
-faceShiner:[
-{name:"<span style='font-size: 0.6rem;'>Safa'z 24k Gold Oxidizing Skin Polish Large Pack,(1000ml)peeling solution & (500grams) blonder powder",img:"s1.jpg",price:2999,original:3250},
-{name:"<span style='font-size: 0.6rem;'>Safa'z Gold 24k Skin Polish Peeling solution(200ml) & Blonder Powder(200 grams)",img:"s2.jpg",price:750 ,original:850},
-{name:"<span style='font-size: 0.6rem;'>Safa'z Hand & Foot Instant Whitening Cream (150grams)", img: "s3.jpg", price: 999, original: 1199, buyTwoPrice: 1899},
-{name: "<span style='font-size: 0.6rem;'>Safa'z All in One Ready 2 White Saffaron Urgent Facial (300grams)", img: "s4.jpg", price: 1199, original:1299, buyTwoPrice:1999},
-{name: "<span style='font-size: 0.6rem;'>Safa'z Natural Skin ShinerSoothing Aloevera(500ml)", img: "s5.jpg", price: 699, original: 799, buyTwoPrice: 1399}
-],
-handFeet:[
-{name:"<span style='font-size: 0.6rem;'>Hand Cream",img:"hand1.jpg",price:640,original:800}
-],
-serum:[
-{name:"<span style='font-size: 0.6rem;'>Glow Serum",img:"serum1.jpg",price:1200,original:1500}
-],
-eye:[
-{name:"<span style='font-size: 0.6rem;'>Highlighter",img:"eye1.jpg",price:680,original:850}
-]
+const products = {
+    faceShiner: [
+        {name: "<span style='font-size: 0.6rem;'>Safa'z 24k Gold Oxidizing Skin Polish Large Pack,(1000ml)peeling solution & (500grams) blonder powder", img: "s1.jpg", price: 2999, original: 3250},
+        {name: "<span style='font-size: 0.6rem;'>Safa'z Gold 24k Skin Polish Peeling solution(200ml) & Blonder Powder(200 grams)", img: "s2.jpg", price: 750, original: 850},
+        {name: "<span style='font-size: 0.6rem;'>Safa'z Hand & Foot Instant Whitening Cream (150grams)", img: "s3.jpg", price: 999, original: 1199, buyTwoPrice: 1899},
+        {name: "<span style='font-size: 0.6rem;'>Safa'z All in One Ready 2 White Saffaron Urgent Facial (300grams)", img: "s4.jpg", price: 1199, original: 1299, buyTwoPrice: 1999},
+        {name: "<span style='font-size: 0.6rem;'>Safa'z Natural Skin ShinerSoothing Aloevera(500ml)", img: "s5.jpg", price: 699, original: 799, buyTwoPrice: 1399}
+    ],
+    handFeet: [
+        {name: "<span style='font-size: 0.6rem;'>Hand Cream", img: "hand1.jpg", price: 640, original: 800}
+    ],
+    serum: [
+        {name: "<span style='font-size: 0.6rem;'>Glow Serum", img: "serum1.jpg", price: 1200, original: 1500}
+    ],
+    eye: [
+        {name: "<span style='font-size: 0.6rem;'>Highlighter", img: "eye1.jpg", price: 680, original: 850}
+    ]
 };
 
-function showProducts(category,el){
-    document.querySelectorAll('.categoryItem').forEach(c=>c.classList.remove('activeCat'));
-    if(el)el.classList.add('activeCat');
+// Show Products Function
+function showProducts(category, el) {
+    document.querySelectorAll('.categoryItem').forEach(c => c.classList.remove('activeCat'));
+    if (el) el.classList.add('activeCat');
 
-    const container=document.getElementById('productsContainer');
-    container.innerHTML='';
-    products[category].forEach((p,i)=>{
-        container.innerHTML+=`
+    const container = document.getElementById('productsContainer');
+    container.innerHTML = '';
+    
+    if (!products[category]) {
+        container.innerHTML = '<p>No products found for this category.</p>';
+        return;
+    }
+
+    products[category].forEach((p, i) => {
+        container.innerHTML += `
         <div class="productCard">
             <img src="${p.img}" onclick="openModal('${p.img}')">
             <h4>${p.name}</h4>
-            <div><span class="originalPrice">PKR ${p.original}</span>
-            <span class="price"> PKR ${p.price}</span></div>
+            <div>
+                <span class="originalPrice">PKR ${p.original}</span>
+                <span class="price"> PKR ${p.price}</span>
+            </div>
 
             <div class="qtyBox">
-                <input type="number" min="1" value="1" onchange="updateLiveTotal(this,${p.price})">
+                <input type="number" min="1" value="1" onchange="updateLiveTotal(this, ${p.price})">
                 <div class="price">Total: PKR ${p.price}</div>
 
-                <button class="btn addBtn" onclick="addToCart('${category}',${i},this)">Add To Cart</button>
-                <button class="btn buyBtn" onclick="buyNow('${category}',${i},this)">Buy Now</button>
+                <button class="btn addBtn" onclick="addToCart('${category}', ${i}, this)">Add To Cart</button>
+                <button class="btn buyBtn" onclick="buyNow('${category}', ${i}, this)">Buy Now</button>
                 
-             <button class="btn share-btn" onclick="shareProduct('${category}', ${i}, '${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.img}')">
-    <span class="share-icon">📤</span> 
-</button>
+                <button class="btn share-btn" onclick="shareProduct('${category}', ${i}, '${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.img}')">
+                    <span class="share-icon">📤</span> Share
+                </button>
             </div>
         </div>`;
     });
 }
+
+// Share Product Function
 async function shareProduct(category, index, name, price, img) {
-    // Clean the name to remove HTML tags for the share message
     const cleanName = name.replace(/<[^>]*>?/gm, '');
-    
-    // Create URL with query parameters to identify the specific product
     const baseUrl = 'https://minii11.github.io/test/product.html';
     const productUrl = `${baseUrl}?cat=${category}&idx=${index}`;
     
-    // Include image URL in the share text
     const shareData = {
         title: 'Safa\'z Product',
         text: `Check out this amazing product: ${cleanName} for only PKR ${price}!\n\nImage: ${img}\nLink: ${productUrl}`,
         url: productUrl
     };
 
-    // Check if the device supports native sharing (Mobile)
     if (navigator.share) {
         try {
             await navigator.share(shareData);
@@ -1237,7 +1243,6 @@ async function shareProduct(category, index, name, price, img) {
             console.log('Error sharing:', err);
         }
     } else {
-        // Fallback for Desktop (Copy to clipboard)
         try {
             await navigator.clipboard.writeText(productUrl);
             alert('Product link copied to clipboard!');
@@ -1247,25 +1252,40 @@ async function shareProduct(category, index, name, price, img) {
     }
 }
 
-    // Add this to your product.html page (at the bottom before </body>)
+// Helper Functions
+function updateLiveTotal(input, price) {
+    input.parentElement.querySelector('.price').innerText = "Total: PKR " + (input.value * price);
+}
+function addToCart(cat, idx, btn) { 
+    btn.innerText = "Added!"; 
+    setTimeout(() => btn.innerText = "Add To Cart", 1000); 
+}
+function buyNow(cat, idx, btn) { alert("Proceeding to checkout..."); }
+function openModal(img) { alert("Opening modal for " + img); }
+
+// Initialize First Category
+showProducts('faceShiner', document.querySelector('.categoryItem'));
+</script>
+
+<!-- Add this to your product.html page (at the bottom before </body>) -->
+<script>
 window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get('cat');
     const index = urlParams.get('idx');
 
     if (category && index) {
-        // Scroll to the specific product card
         const productCards = document.querySelectorAll('.productCard');
         if (productCards[index]) {
             productCards[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
             
-            // Highlight the product with a border and shadow
+            // Highlight the product
             productCards[index].style.border = '3px solid #007bff';
             productCards[index].style.boxShadow = '0 0 15px rgba(0,123,255,0.6)';
             productCards[index].style.transform = 'scale(1.02)';
             productCards[index].style.transition = 'all 0.3s ease';
             
-            // Optional: Remove highlight after 5 seconds
+            // Remove highlight after 5 seconds
             setTimeout(() => {
                 productCards[index].style.border = '1px solid #eee';
                 productCards[index].style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
@@ -1274,23 +1294,6 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
-    // Check if the device supports native sharing (Mobile)
-    if (navigator.share) {
-        try {
-            await navigator.share(shareData);
-        } catch (err) {
-            console.log('Error sharing:', err);
-        }
-    } else {
-        // Fallback for Desktop (Copy to clipboard)
-        try {
-            await navigator.clipboard.writeText(shareData.text);
-            alert('Product details copied to clipboard!');
-        } catch (err) {
-            alert('Failed to copy text.');
-        }
-    }
-}
 
 // Placeholder functions for your existing logic
 function updateLiveTotal(input, price) {
@@ -1818,6 +1821,7 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
+
 
 
 
