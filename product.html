@@ -1207,17 +1207,13 @@ function showProducts(category,el){
                 <button class="btn addBtn" onclick="addToCart('${category}',${i},this)">Add To Cart</button>
                 <button class="btn buyBtn" onclick="buyNow('${category}',${i},this)">Buy Now</button>
                 
-                <!-- NEW SHARE BUTTON -->
-                <button class="btn share-btn" onclick="shareProduct('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.img}')">
-                    <span class="share-icon">Share</span> 📤
-                </button>
+             <button class="btn share-btn" onclick="shareProduct('${category}', ${i}, '${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.img}')">
+    <span class="share-icon">📤</span> 
+</button>
             </div>
         </div>`;
     });
 }
-
-// --- NEW SHARE FUNCTION ---
-// --- SHARE FUNCTION WITH SPECIFIC URL ---
 async function shareProduct(category, index, name, price, img) {
     // Clean the name to remove HTML tags for the share message
     const cleanName = name.replace(/<[^>]*>?/gm, '');
@@ -1226,12 +1222,58 @@ async function shareProduct(category, index, name, price, img) {
     const baseUrl = 'https://minii11.github.io/test/product.html';
     const productUrl = `${baseUrl}?cat=${category}&idx=${index}`;
     
+    // Include image URL in the share text
     const shareData = {
         title: 'Safa\'z Product',
-        text: `Check out this amazing product: ${cleanName} for only PKR ${price}!`,
-        url: productUrl // Now includes category and index
+        text: `Check out this amazing product: ${cleanName} for only PKR ${price}!\n\nImage: ${img}\nLink: ${productUrl}`,
+        url: productUrl
     };
 
+    // Check if the device supports native sharing (Mobile)
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+        } catch (err) {
+            console.log('Error sharing:', err);
+        }
+    } else {
+        // Fallback for Desktop (Copy to clipboard)
+        try {
+            await navigator.clipboard.writeText(productUrl);
+            alert('Product link copied to clipboard!');
+        } catch (err) {
+            alert('Failed to copy text.');
+        }
+    }
+}
+
+    // Add this to your product.html page (at the bottom before </body>)
+window.addEventListener('DOMContentLoaded', () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('cat');
+    const index = urlParams.get('idx');
+
+    if (category && index) {
+        // Scroll to the specific product card
+        const productCards = document.querySelectorAll('.productCard');
+        if (productCards[index]) {
+            productCards[index].scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Highlight the product with a border and shadow
+            productCards[index].style.border = '3px solid #007bff';
+            productCards[index].style.boxShadow = '0 0 15px rgba(0,123,255,0.6)';
+            productCards[index].style.transform = 'scale(1.02)';
+            productCards[index].style.transition = 'all 0.3s ease';
+            
+            // Optional: Remove highlight after 5 seconds
+            setTimeout(() => {
+                productCards[index].style.border = '1px solid #eee';
+                productCards[index].style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                productCards[index].style.transform = 'scale(1)';
+            }, 5000);
+        }
+    }
+});
     // Check if the device supports native sharing (Mobile)
     if (navigator.share) {
         try {
@@ -1776,6 +1818,7 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
+
 
 
 
