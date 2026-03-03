@@ -756,52 +756,51 @@ body{
   background:#ffca1a;
     
 }
-.productsContainer{
-    
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:5px;
-  margin-top:30px;
-     font-size: 0.9rem;
-}
-.productCard{
-     width: calc(50% - 9px); /* Two products per row with some margin */
-    max-width: 420px; /* Keep your max width */
-  border:1px solid #ffca1a;
-  border-radius:15px;
-  padding:5px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  transition:0.3s;
-  background:#fffdf6;
-    font-size: 0.8rem; 
-}
-    .productGrid {
+/* Container for all products */
+.productsContainer {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Always 2 columns */
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
+    gap: 10px; /* Space between items */
     padding: 10px;
-    width: 100%;
+    margin-top: 30px;
     box-sizing: border-box;
 }
 
+/* Each product card */
 .productCard {
-    width: 100%; /* Full width of the column */
+    width: 100%; /* Full width of the grid column */
+    border: 1px solid #ffca1a;
+    border-radius: 15px;
+    padding: 5px;
+    background: #fffdf6;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Hover effect for cards */
+.productCard:hover {
+    transform: translateY(-5px);
+}
+
+/* Product image - same size, no cropping */
 .productCard img {
     width: 100%;
-    aspect-ratio: 1 / 1;  /* Keep images square */
-    object-fit: cover;
+    height: 200px; /* fixed height for uniformity */
+    object-fit: contain; /* keep full image visible without cutting */
     border-radius: 12px;
     display: block;
     cursor: pointer;
+    background-color: #fffdf6; /* optional: fill empty space */
 }
 
-/* Optional: ensure very small mobile screens still show 2 columns */
+/* Optional: very small screens */
 @media (max-width: 360px) {
-    .productGrid {
-        grid-template-columns: 1fr 1fr; /* still 2 columns */
+    .productsContainer {
+        grid-template-columns: 1fr 1fr; /* maintain 2 columns */
     }
 }
     .productCard .name {
@@ -1704,6 +1703,7 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
+
 
 
 
