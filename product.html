@@ -1158,17 +1158,25 @@ body{
 
 
 <script>
-let cart = [];
+let cart=[];
 
-const products = {
-    faceShiner: [
-        { name: "Safa'z 24k Gold Oxidizing Skin Polish Large Pack,(1000ml) peeling solution & (500grams) blonder powder", img: "s1.jpg", price: 2999, original: 3250 },
-        { name: "Safa'z Gold 24k Skin Polish Peeling solution(200ml) & Blonder Powder(200 grams)", img: "s2.jpg", price: 750, original: 850 },
-        { name: "Safa'z Hand & Foot Instant Whitening Cream (150grams)", img: "s3.jpg", price: 999, original: 1199, buyTwoPrice: 1899 },
-        { name: "Safa'z All in One Ready 2 White Saffaron Urgent Facial (300grams)", img: "s4.jpg", price: 1199, original: 1299, buyTwoPrice: 1999 },
-        { name: "Safa'z Natural Skin Shiner Soothing Aloe Vera(500ml)", img: "s5.jpg", price: 699, original: 799, buyTwoPrice: 1399 }
-    ],
-    // Additional categories can be added here...
+const products={
+faceShiner:[
+{name:"<span style='font-size: 0.6rem;'>Safa'z 24k Gold Oxidizing Skin Polish Large Pack,(1000ml)peeling solution & (500grams) blonder powder",img:"s1.jpg",price:2999,original:3250},
+{name:"<span style='font-size: 0.6rem;'>Safa'z Gold 24k Skin Polish Peeling solution(200ml) & Blonder Powder(200 grams)",img:"s2.jpg",price:750 ,original:850},
+{name:"<span style='font-size: 0.6rem;'>Safa'z Hand & Foot Instant Whitening Cream (150grams)", img: "s3.jpg", price: 999, original: 1199, buyTwoPrice: 1899},
+{name: "<span style='font-size: 0.6rem;'>Safa'z All in One Ready 2 White Saffaron Urgent Facial (300grams)", img: "s4.jpg", price: 1199, original:1299, buyTwoPrice:1999},
+{name: "<span style='font-size: 0.6rem;'>Safa'z Natural Skin ShinerSoothing Aloevera(500ml)", img: "s5.jpg", price: 699, original: 799, buyTwoPrice: 1399}
+],
+handFeet:[
+{name:"<span style='font-size: 0.6rem;'>Hand Cream",img:"hand1.jpg",price:640,original:800}
+],
+serum:[
+{name:"<span style='font-size: 0.6rem;'>Glow Serum",img:"serum1.jpg",price:1200,original:1500}
+],
+eye:[
+{name:"<span style='font-size: 0.6rem;'>Highlighter",img:"eye1.jpg",price:680,original:850}
+]
 };
 
 function showProducts(category) {
@@ -1179,7 +1187,7 @@ function showProducts(category) {
         const productId = category + "_" + i; // Unique ID for each product
 
         container.innerHTML += `
-            <div class="productCard">
+            <div class="productCard" id="${productId}">
                 <img src="${p.img}" alt="${p.name}">
                 <h4>${p.name}</h4>
                 <div>
@@ -1191,49 +1199,95 @@ function showProducts(category) {
                     <input type="number" min="1" value="1">
                     <div class="price">Total: PKR ${p.price}</div>
                     <button class="btn addBtn">Add To Cart</button>
+                    <button class="btn buyBtn" onclick="buyNow('${category}',${i},this)">Buy Now</button>
+                    <button onclick="openModal('${p.name}', ${p.price}, '${p.img}', '${productId}')" class="btn">Open Modal</button>
                     <button onclick="copyLink('${productId}')" class="btn">📋 Share Product Link</button>
                 </div>
             </div>`;
     });
 }
-
+// Copy product link to clipboard
 function copyLink(id) {
-    let url = "https://minii11.github.io/test/product.html?product=" + id;
+   let url = "https://minii11.github.io/test/product.html?product=" + id;
     navigator.clipboard.writeText(url);
     alert("Product link copied!");
 }
 
-function openModal(name, price, img) {
-    document.getElementById('modalProductName').innerHTML = name;
-    document.getElementById('modalProductPrice').innerHTML = `Price: PKR ${price}`;
-    document.getElementById('modalProductImage').src = img;
-    document.getElementById("productModal").style.display = "block";
+// Open modal and optionally scroll to product
+function openModal(name, price, img, productId=null) {
+    // Scroll to product first if provided
+    if(productId){
+        const el = document.getElementById(productId);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+
+    // Small delay to allow scroll before showing modal
+    setTimeout(() => {
+        document.getElementById('modalProductName').innerHTML = name;
+        document.getElementById('modalProductPrice').innerHTML = `Price: PKR ${price}`;
+        document.getElementById('modalProductImage').src = img;
+        document.getElementById("productModal").style.display = "block";
+    }, 150); // 150ms delay works well on mobile
 }
 
-function closeModal() {
-    document.getElementById("productModal").style.display = "none";
+// Close modal easily (click background or ×)
+function closeModal(event=null) {
+    if(!event || event.target.id === "productModal" || event.target.className === "close"){
+        document.getElementById("productModal").style.display = "none";
+    }
 }
 
-// Check for product link in the URL
+// Check for product in URL and scroll + open modal
 function checkForProduct() {
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('product');
 
-    if (productId) {
+    // Show products first
+    showProducts('faceShiner');
+
+    if(productId){
         const [category, index] = productId.split("_");
-        if (products[category] && products[category][index]) {
-            showProducts(category); // Show the products
-            const product = products[category][index]; // Get the product details
-            openModal(product.name, product.price, product.img); // Open the modal for the product
+        if(products[category] && products[category][index]){
+            const product = products[category][index];
+            // Scroll to product first
+            const el = document.getElementById(productId);
+            if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+            // Then open modal after scroll
+            setTimeout(() => {
+                openModal(product.name, product.price, product.img, productId);
+            }, 150); // 150ms delay ensures smooth scroll
         }
-    } else {
-        // Default view for the first category (e.g., faceShiner)
-        showProducts('faceShiner');
     }
 }
 
-// Call to check for product in the URL
+// Initialize
 checkForProduct();
+
+function showProducts(category,el){
+document.querySelectorAll('.categoryItem').forEach(c=>c.classList.remove('activeCat'));
+if(el)el.classList.add('activeCat');
+
+const container=document.getElementById('productsContainer');
+container.innerHTML='';
+products[category].forEach((p,i)=>{
+container.innerHTML+=`
+<div class="productCard">
+<img src="${p.img}" onclick="openModal('${p.img}')">
+<h4>${p.name}</h4>
+<div><span class="originalPrice">PKR ${p.original}</span>
+<span class="price"> PKR ${p.price}</span></div>
+
+<div class="qtyBox">
+<input type="number" min="1" value="1" onchange="updateLiveTotal(this,${p.price})">
+<div class="price">Total: PKR ${p.price}</div>
+
+<button class="btn addBtn" onclick="addToCart('${category}',${i},this)">Add To Cart</button>
+<button class="btn buyBtn" onclick="buyNow('${category}',${i},this)">Buy Now</button>
+</div>
+</div>`;
+});
+}
+
 function updateLiveTotal(input,price){
 let total=input.value*price;
 input.nextElementSibling.innerText="Total: PKR "+total;
@@ -1749,9 +1803,6 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
-
-
-
 
 
 
