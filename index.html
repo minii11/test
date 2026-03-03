@@ -509,28 +509,79 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="circle-wrapper d-flex justify-content-center align-items-center">
             <div class="circle-container position-relative">
                 
-<img 
-    src="circle.jpg"
-    alt="best item"
-    style="
-        position: absolute;
-        top: 55%;
-        left: 50%;
-        transform: translate(-30%, -40%);
-        max-width: 170px;
-        z-index: 10;
-        border-radius: 50%;
-        box-shadow: none;
-        background-image:
-            radial-gradient(circle at 20% 30%, rgba(255,223,0,0.9) 2px, transparent 4px),
-            radial-gradient(circle at 70% 60%, rgba(255,215,0,0.8) 1.5px, transparent 3px),
-            radial-gradient(circle at 40% 80%, rgba(255,255,255,0.9) 1px, transparent 2px),
-            radial-gradient(circle at 85% 25%, rgba(255,200,0,0.8) 2px, transparent 4px);
-        background-size: 60px 60px;
-        background-repeat: repeat;
-        background-blend-mode: screen;
-    ">
+<div class="sparkle-wrapper">
+    <img src="circle.jpg" alt="best item" class="sparkle-img">
+</div>
+                <style>.sparkle-wrapper {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-30%, -40%);
+    z-index: 10;
+    display: inline-block;
+}
 
+.sparkle-img {
+    max-width: 170px;
+    border-radius: 50%;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+/* GOLD SHIMMER OVERLAY */
+.sparkle-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: 
+        radial-gradient(circle at 15% 25%, rgba(255,215,0,0.9) 2px, transparent 6px),
+        radial-gradient(circle at 75% 65%, rgba(255,223,0,0.8) 1.5px, transparent 5px),
+        radial-gradient(circle at 40% 85%, rgba(255,255,255,0.9) 1px, transparent 4px),
+        radial-gradient(circle at 85% 20%, rgba(255,200,0,0.8) 2px, transparent 6px),
+        radial-gradient(circle at 60% 40%, rgba(255,215,0,0.7) 1px, transparent 3px),
+        radial-gradient(circle at 25% 70%, rgba(255,255,255,0.9) 1px, transparent 3px);
+
+    background-size: 100% 100%;
+    animation: sparkleMove 6s linear infinite,
+               sparkleGlow 2s ease-in-out infinite alternate;
+
+    mix-blend-mode: screen;
+    pointer-events: none;
+    z-index: 3;
+}
+
+/* Soft Luxury Glow */
+.sparkle-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,215,0,0.4), transparent 70%);
+    filter: blur(15px);
+    animation: glowPulse 3s ease-in-out infinite alternate;
+    z-index: 1;
+}
+
+/* Sparkle subtle movement */
+@keyframes sparkleMove {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Sparkle brightness change */
+@keyframes sparkleGlow {
+    from { opacity: 0.6; }
+    to { opacity: 1; }
+}
+
+/* Outer glow pulse */
+@keyframes glowPulse {
+    from { opacity: 0.4; }
+    to { opacity: 0.8; }
+}
+                    </style>
 
 
 
@@ -1560,6 +1611,7 @@ document.addEventListener("keydown", function(event) {
 <script src="js/main.js"></script>
 </body>
 </html>
+
 
 
 
