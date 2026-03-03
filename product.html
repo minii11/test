@@ -1144,6 +1144,18 @@ body{
 }
 
 </style>
+<div id="productsContainer"></div>
+
+<!-- Modal Structure -->
+<div id="productModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2 id="modalProductName"></h2>
+        <p id="modalProductPrice"></p>
+        <img id="modalProductImage" alt="Product Image">
+    </div>
+</div>
+
 
 <script>
 let cart=[];
@@ -1166,6 +1178,90 @@ eye:[
 {name:"<span style='font-size: 0.6rem;'>Highlighter",img:"eye1.jpg",price:680,original:850}
 ]
 };
+
+function showProducts(category) {
+    const container = document.getElementById('productsContainer');
+    container.innerHTML = '';
+
+    products[category].forEach((p, i) => {
+        const productId = category + "_" + i; // Unique ID for each product
+
+        container.innerHTML += `
+            <div class="productCard" id="${productId}">
+                <img src="${p.img}" alt="${p.name}">
+                <h4>${p.name}</h4>
+                <div>
+                    <span class="originalPrice">PKR ${p.original}</span>
+                    <span class="price"> PKR ${p.price}</span>
+                </div>
+                ${p.buyTwoPrice ? `<div style="color:green;">Buy 2 for PKR ${p.buyTwoPrice}</div>` : ""}
+                <div class="qtyBox">
+                    <input type="number" min="1" value="1">
+                    <div class="price">Total: PKR ${p.price}</div>
+                    <button class="btn addBtn">Add To Cart</button>
+                    <button class="btn buyBtn" onclick="buyNow('${category}',${i},this)">Buy Now</button>
+                    <button onclick="openModal('${p.name}', ${p.price}, '${p.img}', '${productId}')" class="btn">Open Modal</button>
+                    <button onclick="copyLink('${productId}')" class="btn">📋 Share Product Link</button>
+                </div>
+            </div>`;
+    });
+}
+// Copy product link to clipboard
+function copyLink(id) {
+   let url = "https://minii11.github.io/test/product.html?product=" + id;
+    navigator.clipboard.writeText(url);
+    alert("Product link copied!");
+}
+
+// Open modal and optionally scroll to product
+function openModal(name, price, img, productId=null) {
+    // Scroll to product first if provided
+    if(productId){
+        const el = document.getElementById(productId);
+        if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+
+    // Small delay to allow scroll before showing modal
+    setTimeout(() => {
+        document.getElementById('modalProductName').innerHTML = name;
+        document.getElementById('modalProductPrice').innerHTML = `Price: PKR ${price}`;
+        document.getElementById('modalProductImage').src = img;
+        document.getElementById("productModal").style.display = "block";
+    }, 150); // 150ms delay works well on mobile
+}
+
+// Close modal easily (click background or ×)
+function closeModal(event=null) {
+    if(!event || event.target.id === "productModal" || event.target.className === "close"){
+        document.getElementById("productModal").style.display = "none";
+    }
+}
+
+// Check for product in URL and scroll + open modal
+function checkForProduct() {
+    const params = new URLSearchParams(window.location.search);
+    const productId = params.get('product');
+
+    // Show products first
+    showProducts('faceShiner');
+
+    if(productId){
+        const [category, index] = productId.split("_");
+        if(products[category] && products[category][index]){
+            const product = products[category][index];
+            // Scroll to product first
+            const el = document.getElementById(productId);
+            if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
+            // Then open modal after scroll
+            setTimeout(() => {
+                openModal(product.name, product.price, product.img, productId);
+            }, 150); // 150ms delay ensures smooth scroll
+        }
+    }
+}
+
+// Initialize
+checkForProduct();
 
 function showProducts(category,el){
 document.querySelectorAll('.categoryItem').forEach(c=>c.classList.remove('activeCat'));
@@ -1707,7 +1803,6 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
-
 
 
 
