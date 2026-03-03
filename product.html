@@ -1142,20 +1142,27 @@ body{
   from{transform:scale(0.9);opacity:0;}
   to{transform:scale(1);opacity:1;}
 }
-
+ .share-btn {
+        background-color: white; /* Grey color */
+        color: black;
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+    }
+    .share-btn:hover { background-color:rgb(222, 168, 4); }
+    .share-icon { font-size: 1.2rem; }
 </style>
-<div id="productsContainer"></div>
 
-<!-- Modal Structure -->
-<div id="productModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2 id="modalProductName"></h2>
-        <p id="modalProductPrice"></p>
-        <img id="modalProductImage" alt="Product Image">
-    </div>
+<!-- Category Navigation -->
+<div id="categoryNav">
+    <div class="categoryItem activeCat" onclick="showProducts('faceShiner', this)">Face Shiner</div>
+    <div class="categoryItem" onclick="showProducts('handFeet', this)">Hand & Feet</div>
+    <div class="categoryItem" onclick="showProducts('serum', this)">Serum</div>
+    <div class="categoryItem" onclick="showProducts('eye', this)">Eye</div>
 </div>
-
+<div id="productsContainer"></div>
 
 <script>
 let cart=[];
@@ -1179,114 +1186,80 @@ eye:[
 ]
 };
 
-function showProducts(category) {
-    const container = document.getElementById('productsContainer');
-    container.innerHTML = '';
+function showProducts(category,el){
+    document.querySelectorAll('.categoryItem').forEach(c=>c.classList.remove('activeCat'));
+    if(el)el.classList.add('activeCat');
 
-    products[category].forEach((p, i) => {
-        const productId = category + "_" + i; // Unique ID for each product
+    const container=document.getElementById('productsContainer');
+    container.innerHTML='';
+    products[category].forEach((p,i)=>{
+        container.innerHTML+=`
+        <div class="productCard">
+            <img src="${p.img}" onclick="openModal('${p.img}')">
+            <h4>${p.name}</h4>
+            <div><span class="originalPrice">PKR ${p.original}</span>
+            <span class="price"> PKR ${p.price}</span></div>
 
-        container.innerHTML += `
-            <div class="productCard" id="${productId}">
-                <img src="${p.img}" alt="${p.name}">
-                <h4>${p.name}</h4>
-                <div>
-                    <span class="originalPrice">PKR ${p.original}</span>
-                    <span class="price"> PKR ${p.price}</span>
-                </div>
-                ${p.buyTwoPrice ? `<div style="color:green;">Buy 2 for PKR ${p.buyTwoPrice}</div>` : ""}
-                <div class="qtyBox">
-                    <input type="number" min="1" value="1">
-                    <div class="price">Total: PKR ${p.price}</div>
-                    <button class="btn addBtn">Add To Cart</button>
-                    <button class="btn buyBtn" onclick="buyNow('${category}',${i},this)">Buy Now</button>
-                    <button onclick="openModal('${p.name}', ${p.price}, '${p.img}', '${productId}')" class="btn">Open Modal</button>
-                    <button onclick="copyLink('${productId}')" class="btn">📋 Share Product Link</button>
-                </div>
-            </div>`;
+            <div class="qtyBox">
+                <input type="number" min="1" value="1" onchange="updateLiveTotal(this,${p.price})">
+                <div class="price">Total: PKR ${p.price}</div>
+
+                <button class="btn addBtn" onclick="addToCart('${category}',${i},this)">Add To Cart</button>
+                <button class="btn buyBtn" onclick="buyNow('${category}',${i},this)">Buy Now</button>
+                
+                <!-- NEW SHARE BUTTON -->
+                <button class="btn share-btn" onclick="shareProduct('${p.name.replace(/'/g, "\\'")}', ${p.price}, '${p.img}')">
+                    <span class="share-icon">Share</span> 📤
+                </button>
+            </div>
+        </div>`;
     });
 }
-// Copy product link to clipboard
-function copyLink(id) {
-   let url = "https://minii11.github.io/test/product.html?product=" + id;
-    navigator.clipboard.writeText(url);
-    alert("Product link copied!");
-}
 
-// Open modal and optionally scroll to product
-function openModal(name, price, img, productId=null) {
-    // Scroll to product first if provided
-    if(productId){
-        const el = document.getElementById(productId);
-        if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
-    }
+// --- NEW SHARE FUNCTION ---
+// --- SHARE FUNCTION WITH SPECIFIC URL ---
+async function shareProduct(category, index, name, price, img) {
+    // Clean the name to remove HTML tags for the share message
+    const cleanName = name.replace(/<[^>]*>?/gm, '');
+    
+    // Create URL with query parameters to identify the specific product
+    const baseUrl = 'https://minii11.github.io/test/product.html';
+    const productUrl = `${baseUrl}?cat=${category}&idx=${index}`;
+    
+    const shareData = {
+        title: 'Safa\'z Product',
+        text: `Check out this amazing product: ${cleanName} for only PKR ${price}!`,
+        url: productUrl // Now includes category and index
+    };
 
-    // Small delay to allow scroll before showing modal
-    setTimeout(() => {
-        document.getElementById('modalProductName').innerHTML = name;
-        document.getElementById('modalProductPrice').innerHTML = `Price: PKR ${price}`;
-        document.getElementById('modalProductImage').src = img;
-        document.getElementById("productModal").style.display = "block";
-    }, 150); // 150ms delay works well on mobile
-}
-
-// Close modal easily (click background or ×)
-function closeModal(event=null) {
-    if(!event || event.target.id === "productModal" || event.target.className === "close"){
-        document.getElementById("productModal").style.display = "none";
-    }
-}
-
-// Check for product in URL and scroll + open modal
-function checkForProduct() {
-    const params = new URLSearchParams(window.location.search);
-    const productId = params.get('product');
-
-    // Show products first
-    showProducts('faceShiner');
-
-    if(productId){
-        const [category, index] = productId.split("_");
-        if(products[category] && products[category][index]){
-            const product = products[category][index];
-            // Scroll to product first
-            const el = document.getElementById(productId);
-            if(el) el.scrollIntoView({behavior:'smooth', block:'center'});
-            // Then open modal after scroll
-            setTimeout(() => {
-                openModal(product.name, product.price, product.img, productId);
-            }, 150); // 150ms delay ensures smooth scroll
+    // Check if the device supports native sharing (Mobile)
+    if (navigator.share) {
+        try {
+            await navigator.share(shareData);
+        } catch (err) {
+            console.log('Error sharing:', err);
+        }
+    } else {
+        // Fallback for Desktop (Copy to clipboard)
+        try {
+            await navigator.clipboard.writeText(shareData.text);
+            alert('Product details copied to clipboard!');
+        } catch (err) {
+            alert('Failed to copy text.');
         }
     }
 }
 
-// Initialize
-checkForProduct();
-
-function showProducts(category,el){
-document.querySelectorAll('.categoryItem').forEach(c=>c.classList.remove('activeCat'));
-if(el)el.classList.add('activeCat');
-
-const container=document.getElementById('productsContainer');
-container.innerHTML='';
-products[category].forEach((p,i)=>{
-container.innerHTML+=`
-<div class="productCard">
-<img src="${p.img}" onclick="openModal('${p.img}')">
-<h4>${p.name}</h4>
-<div><span class="originalPrice">PKR ${p.original}</span>
-<span class="price"> PKR ${p.price}</span></div>
-
-<div class="qtyBox">
-<input type="number" min="1" value="1" onchange="updateLiveTotal(this,${p.price})">
-<div class="price">Total: PKR ${p.price}</div>
-
-<button class="btn addBtn" onclick="addToCart('${category}',${i},this)">Add To Cart</button>
-<button class="btn buyBtn" onclick="buyNow('${category}',${i},this)">Buy Now</button>
-</div>
-</div>`;
-});
+// Placeholder functions for your existing logic
+function updateLiveTotal(input, price) {
+    input.parentElement.querySelector('.price').innerText = "Total: PKR " + (input.value * price);
 }
+function addToCart(cat, idx, btn) { btn.innerText = "Added!"; setTimeout(()=>btn.innerText="Add To Cart", 1000); }
+function buyNow(cat, idx, btn) { alert("Proceeding to checkout..."); }
+function openModal(img) { alert("Opening modal for " + img); }
+
+// Initialize
+showProducts('faceShiner', document.querySelector('.categoryItem'));
 
 function updateLiveTotal(input,price){
 let total=input.value*price;
@@ -1803,6 +1776,8 @@ function buyNow(category,index,btn){
 </body>
 
 </html>
+
+
 
 
 
